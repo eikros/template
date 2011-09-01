@@ -32,14 +32,3 @@
 .example a {
 	color: white;
 }
-
-
-/* .header */
-
-.site_header {}
-.site_header > .logo_thumb {}
-
-
-/* .footer */
-
-.site_footer {}
