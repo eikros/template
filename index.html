@@ -1,67 +1,255 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<meta name="author" content="">
-	<meta name="description" content="">
-	
-	<title>Title</title>
-	
-	<script>document.documentElement.className = 'js';</script>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-	<!-- Force latest IE rendering engine & Chrome Frame -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<!-- Make IE recognise HTML5 elements for styling (must stay in the head, before elements are used) -->
-	<!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<!-- Disable image toolbar in IE6 -->
-	<!--[if lte IE 6]><meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-	
-	<link rel="icon" type="image/png" href="images/favicon.png" />
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	
-	<link rel="stylesheet" type="text/css" href="css/template.reset.css" />
-	<link rel="stylesheet" type="text/css" href="css/template.typography.css" />
-	<link rel="stylesheet" type="text/css" href="css/template.typography.14_24.css" />
-	<link rel="stylesheet" type="text/css" href="css/template.forms.css" />
-	<link rel="stylesheet" type="text/css" href="css/template.classes.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/template.ie.css" /><![endif]-->
-	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="css/template.ie8.css" /><![endif]-->
-	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/template.ie7.css" /><![endif]-->
-	<!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/template.ie6.css" /><![endif]-->
-	<link rel="stylesheet" type="text/css" href="css/site.layout.css" />
-	<link rel="stylesheet" type="text/css" href="css/site.typography.css" />
-	
-	<link rel="stylesheet" type="text/css" href="css/test.css" />
-</head>
+---
+layout: site
+---
 
-<body>
-	<header>
-		<h1>template</h1>
-	</header>
+<section class="site_wrap wrap">
+	<h1>template</h1>
 	
-	<p>A base template for starting projects. Features:</p>
+	<p>A class-based web UI development framework for making webdoc.com apps and widgets.</p>
+	
+	<blockquote>It is super brilliant! It is really simple to work with your framework. I am really your fan ;) – Dmitri Dudin</blockquote>
+	
+	<h2>The project</h2>
+	
+	<dl>
+		<dt>repository</dt><dd><a href="http://github.com/webdoc/template">github.com/webdoc/template</a></dd>
+		<dt>documentation</dt><dd><a href="http://webdoc.github.com/template">webdoc.github.com/template</a></dd>
+	</dl>
+	
+	<h2>The files</h2>
+	
+	<dl>
+		<dt>template</dt><dd><a href="#">github.com/webdoc/template.css</a></dd>
+		<dt>documentation</dt><dd><a href="http://webdoc.github.com/template">webdoc.github.com/template</a></dd>
+	</dl>
+	
+	<!--h2>Techniques</h2>
+	
+	<p>Before getting started with template, there are a few techniques you should be aware of.</p>
+	
+	<h3>CSS class system</h3>
+	
+	<p>Classes in Template are organised following</p>
+	
+	<h3>Inline blocks</h3>
+	
+	<p>Template uses <code>inline-block</code> extensively to create horizontal layouts. In fact there are no floats in Template. Inline blocks have advantages over floats:</p>
+	
 	<ul>
-		<li>a full CSS library with reset, form and typographic base styles, and useful layout classes.</li>
-		<li>useful JS and jQuery extensions including transition class handling and form validation.</li>
-		<li>HTML5 template.</li>
+		<li>They stay in the flow, so their parents always 'clear'</li>
+		<li>It is possible to write them in arbitrary content order</li>
+		<li>Inline block layouts can be thought of as a subset of the upcoming box-layout CSS3 module</li>
 	</ul>
-	<p>Files are designed to be concatenated and compressed.</p>
-	<p>All files are ignored unless specifically included in .gitignore (making it is safe to commit to <b>template</b> when the project has already added other files).</p>
-	<p>Major parts of this template are purloined from other sources. Credit is given in comments in the code.</p>
 	
-	<!--[if IE 6]><script src="iepngfix/iepngfix_tilebg.js"></script><![endif]-->
-	<script src="js/js.extensions.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery.js"%3E%3C/script%3E'));</script>
-	<script src="js/jquery.extensions.js"></script>
-	<script src="js/jquery.validator.js"></script>
-	<script src="js/jquery.transitions.js"></script>
-	<script src="js/jquery.loading.js"></script>
-	<script src="js/jquery.popup.js"></script>
-	<script src="js/ui.site.js"></script>
+	<p>There is one major gotcha: inline blocks, being inline, are affected by spaces between the blocks. In Template example code, you will frequently see this sort of html formatting:</p>
 	
-	<!-- debug -->
-	<script src="http://localhost:8001/vogue-client.js"></script>
-</body>
-</html>
+	<pre>&lt;div&gt;
+	&lt;/div
+	
+	&gt;&lt;div&gt;
+	&lt;/div&gt;</pre>
+	
+	<p>This is a perfectly valid way to format html while avoiding spaces between inline blocks.</p>
+	
+	<h3></h3-->
+</section>
+
+<section>
+	<div class="site_wrap wrap">
+		<h2>CSS</h2>
+
+		<!--h3>.button</h3>
+		
+		<h3>.thumb</h3>
+		
+		<h3>.card</h3>
+		
+		<h3>.index</h3>
+		
+		<h3>.col</h3>
+		
+		<h3>.wrap</h3-->
+		
+		<h3>.layer</h3>
+		
+		<p>Layers are absolutely positioned elements that fill their parents' width and height, and are used to create screens behind popups and loading icons, among other things. Layers inherit their parent's <code class="css">border-radius</code> so to avoid sharp corners over parents that have rounded corners.</p>
+	</div>
+<section>
+
+<section>
+	<div class="site_wrap wrap">
+		<h2>Activatable elements</h2>
+
+		<p>Popdowns, dropdowns, tabs and slides are ui elements with two states. When they are visible, they have the class <code>active</code>. When they are not, they don't.</p>
+	
+		<p>They share a common way to trigger active state. Firstly, they are activated when the user clicks on a link that refers to them by id:</p>
+	
+		<a class="nostyle" href="#id_of_dropdown">
+		{% highlight html %}<a href="#id_of_dropdown">Open dropdown</a>{% endhighlight %}
+		</a>
+	
+		<p>Secondly, they can also be activated and deactivated programmatically:</p>
+	
+		<a class="nostyle" href="#id_of_dropdown">
+{% highlight js %}jQuery('#id_of_dropdown').trigger('activate');
+jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
+		</a>
+		
+		<p>Creating a popdown, dropdown, set of tabs or a slide is as easy as adding a class to an element, then linking to it by id. Links that refer to popdowns, dropdowns, tabs and slides are also given the class <code>active</code>, making it easy to create stateful buttons. Transitions to and from active state are defined using CSS transitions.</p>
+	</div>
+	
+	<div class="site_wrap wrap">
+		<h3>.dropdown</h3>
+		
+		<p>Dropdowns are used to make menus and navigation. Once active, they deactivate when the user touches or mousedowns outside them, or when the user clicks on or inside them.</p>
+	</div>
+
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<a href="#arthur">Open dropdown</a>
+
+<div class="dropdown" id="arthur">
+  <p>Ford, there is an infinite number of monkeys outside, who want to
+  talk to us about this script for Hamlet they have worked out.</p>
+</div>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<a href="#arthur">Open dropdown</a>
+				
+				<div class="dropdown" id="arthur">
+					<p>Ford, there is an infinite number of monkeys outside, who want to talk to us about this script for Hamlet they have worked out.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="site_wrap wrap">
+		<h3>.popdown</h3>
+		
+		<p>Popdowns are used to make menus, drawers, and elements that require explicit deactivation. Once active, they deactivate when the user touches or mousedowns outside them, or when a <code>#close</code> link is clicked inside them:</p>
+	</div>
+	
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<a href="#arthur">Open popdown</a>
+	
+<div class="popdown" id="arthur">
+  <p>Ford, there is an infinite number of monkeys outside, who want to
+  talk to us about this script for Hamlet they have worked out.</p>
+  
+  <a href="#close">Close</a>
+</div>{% endhighlight %}
+			</div>
+				
+			<div class="example">
+				<a href="#arthur">Open dropdown</a>
+				
+				<div class="popdown" id="arthur">
+					<p>Ford, there is an infinite number of monkeys outside, who want to talk to us about this script for Hamlet they have worked out.</p>
+					<a href="#close">Close</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="site_wrap wrap">
+		<h3>.tab<br/>.slide</h3>
+		<p>Tabs and slides are functionally identical. Two classes are provided for convenience, as tabs and slides tend to be styled very differently. Where we refer to 'tabs' below, assume that we also mean slides.</p>
+		<p>In any group of tabs, only one can be active at any one time. Normally, all <code>.tab</code> or <code>.slide</code> siblings of the tab or slide currently being activated automatically become a group.</p>
+		<p>To be more explicit, the grouping can be overridden with a <code>data-selector</code> attribute containing a selector for all other tabs in the group. The selector can be any that jQuery understands. Here are two tabs grouped using a class selector:</p>
+	</div>
+	
+{% highlight html %}<div class="quote_tab tab" id="ford" data-selector=".quote_tab">
+  <p>Time is an illusion. Lunchtime, doubly so.</p>
+</div
+
+><div class="quote_tab tab" id="zaphod" data-selector=".quote_tab">
+  <p>I'm a great and amazing guy, didn't I tell you baby?</p>
+</div>{% endhighlight %}
+
+<!-- You may be wondering about that odd div closing tag. That's a technique for creating spaceless html. See the section on working with inline-blocks. -->
+	<div class="site_wrap wrap">
+		<p>Of course, this means you can create tab groups from non-sibling elements. A little care must be taken, however; all tabs in a group must share the same <code>data-selector</code>: a tab can only belong to one group, and if it is inadvertently selected by another group it will cause some odd behaviour.</p>
+		<p>Inside tabs and slides, a couple of special links can be used for navigation:</p>
+	</div>
+
+{% highlight html %}<a href="#prev">Previous slide</a>
+<a href="#next">Next slide</a>{% endhighlight %}
+
+	<div class="site_wrap wrap">
+		<p>&#8230;navigating backwards and forwards through the group respectively.</p>
+	</div>
+</section>
+
+
+
+
+
+
+<h2>jQuery</h2>
+
+<p>Template extends jQuery with events and methods.</p>
+
+<h3>activate event</h3>
+
+<p>Popdowns, dropdowns, tabs and slides are all activated by triggering the jQuery special event <code>activate</code>. The definition of this event can be found in js/jquery.event.activate.js. By default, the <code>activate</code> event adds the class <code>active</code> to the element it is triggered on, plus any links that reference that element's id via their <code>href</code> attribute.</p>
+
+<p>The <code>activate</code> event greatly simplifies the code needed to make dropdowns and tabs respond both to user actions and programmatically. Using the <code>activate</code> event as an abstraction, the code that makes dropdowns, popdowns, tabs and slides respond to user events can be found in js/template.ui.js.</p>
+
+<h3>.addLoadingIcon()</h3>
+
+<p>Inserts a <code>.loading_layer</code> with a canvas-animated loading icon into the first element in the collection.</p>
+
+<h3>.removeLoadingIcon()</h3>
+
+<p>Removes a loading icon from the first element in the current collection. It is important to use this method to cancel loading layers created with <code class="js">.addLoadingIcon()</code> as it also cleans up the animation timer.</p>
+
+<h3>.addTransitionClass(<code>class</code> [, <code>fn</code> || <code>options</code>])</h3>
+
+<p>Adds the class <code>class</code>. Analogous to <code>.addClass()</code>, only during a CSS transition caused by adding <code>class</code>, the class <code>transition</code> is also present on the node. This allows for styles that require, for example, <code>display: none;</code> to be applied at the end of a transition, where the class <code>transition</code> can be used to override the <code>display</code> value during the transition.</p>
+
+<p>This is probably more clearly explained with a bit of CSS:</p>
+
+{% highlight css %}.popup_layer {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.06s ease-in;
+}
+
+.popup_layer.active {
+  opacity: 1;
+  display: block;
+}
+
+.popup_layer.transition {
+  display: block;
+}{% endhighlight %}
+
+<p>For more information, and description of options object, have a look at the repository <a href="http://github.com/stephband/jquery.transitions">github.com/stephband/jquery.transitions</a>.</p>
+
+<h3>.removeTransitionClass(<code>class</code> [, <code>fn</code> || <code>options</code>])</h3>
+
+<p>As <code>.addTransitionClass()</code>, only it removes the class <code>class</code>.</p>
+
+<p>For more information, and description of options object, have a look at the repository <a href="http://github.com/stephband/jquery.transitions">github.com/stephband/jquery.transitions</a>.</p>
+
+<h2>Shims</h2>
+
+<h3>details</h3>
+
+<p></p>
+
+<h2>master branch</h2>
+
+<p>A base template as used for webdoc.</p>
+
+<h2>app branch</h2>
+
+<p>Template for creating app iframes.</p>
+
+<h2>inspector branch</h2>
+
+<p>Template for creating inspector iframes.</p>
