@@ -201,8 +201,8 @@ jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
 	<div class="site_wrap wrap">
 		<div class="doc_col col">
 			<h3>.slide</h3>
-			<p>Slides are functionally identical to tabs – only one can be active at any one time. They differ in default style, where slides have the popular slide-in-from-the-side animation when they are activated.</p>
-			<p>Slides don't by default have a parent with <code class="css">overflow: hidden</code>. Usually you want one of those.</p>
+			<p>Slides are functionally identical to tabs – only one can be active at any one time. They differ in default style, where slides have the popular slide-in-from-the-side animation when they are activated. Slides also react to the special <code>#prev</code> and <code>#next</code> links.</p>
+			<p>Note that slides don't by default have a parent with <code class="css">overflow: hidden</code> – usually you want one of those.</p>
 		</div>
 	</div>
 	
@@ -211,26 +211,25 @@ jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
 			<div class="doc_col col">
 {% highlight html %}<ul class="horizontal index">
   <li><a class="slide_button button" href="#slide1">Slide 1</a></li
- ><li><a class="slide_button button" href="#slide2">Slide 2</a></li
- ><li><a class="slide_button button" href="#slide3">Slide 3</a></li>
+ ><li><a class="slide_button button" href="#slide2">Slide 2</a></li>
 </ul>
 
 <div class="slide" id="slide1">
   <p>Time is an illusion. Lunchtime, doubly so.</p>
 </div
 ><div class="slide" id="slide2">
-  <p>I'm a great and amazing guy, didn't I tell you baby?</p>
-</div
-><div class="slide" id="slide3">
   <p>I'm sorry, did you just say you needed my brain?</p>
+  <ul class="horizontal index">
+    <li><a href="#prev">prev</a></li
+   ><li><a href="#next">next</a></li>
+  </ul>
 </div>{% endhighlight %}
 			</div>
 			
 			<div class="example">
 				<ul class="horizontal index">
 				  <li><a class="slide_button button" href="#slide1">Slide 1</a></li
-				 ><li><a class="slide_button button" href="#slide2">Slide 2</a></li
-				 ><li><a class="slide_button button" href="#slide3">Slide 3</a></li>
+				 ><li><a class="slide_button button" href="#slide2">Slide 2</a></li>
 				</ul>
 				
 				<div class="slide" id="slide1">
@@ -238,9 +237,10 @@ jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
 				</div
 				><div class="slide" id="slide2">
 				  <p>I'm a great and amazing guy, didn't I tell you baby?</p>
-				</div
-				><div class="slide" id="slide3">
-				  <p>I'm sorry, did you just say you needed my brain?</p>
+				  <ul class="horizontal index">
+				    <li><a href="#prev">prev</a></li
+				   ><li><a href="#next">next</a></li>
+				  </ul>
 				</div>
 			</div>
 		</div>
