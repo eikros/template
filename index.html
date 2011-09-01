@@ -78,24 +78,26 @@ layout: site
 
 <section>
 	<div class="site_wrap wrap">
-		<h2>Activatable elements</h2>
-
-		<p>Popdowns, dropdowns, tabs and slides are ui elements with two states. When they are visible, they have the class <code>active</code>. When they are not, they don't.</p>
+		<div class="doc_col col">
+			<h2>Activatable elements</h2>
 	
-		<p>They share a common way to trigger active state. Firstly, they are activated when the user clicks on a link that refers to them by id:</p>
-	
-		<a class="nostyle" href="#id_of_dropdown">
-		{% highlight html %}<a href="#id_of_dropdown">Open dropdown</a>{% endhighlight %}
-		</a>
-	
-		<p>Secondly, they can also be activated and deactivated programmatically:</p>
-	
-		<a class="nostyle" href="#id_of_dropdown">
+			<p>Popdowns, dropdowns, tabs and slides are ui elements with two states. When they are visible, they have the class <code>active</code>. When they are not, they don't.</p>
+		
+			<p>They share a common way to trigger active state. Firstly, they are activated when the user clicks on a link that refers to them by id:</p>
+		
+			<a class="nostyle" href="#id_of_dropdown">
+			{% highlight html %}<a href="#id_of_dropdown">Open dropdown</a>{% endhighlight %}
+			</a>
+		
+			<p>Secondly, they can also be activated and deactivated programmatically:</p>
+		
+			<a class="nostyle" href="#id_of_dropdown">
 {% highlight js %}jQuery('#id_of_dropdown').trigger('activate');
 jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
-		</a>
-		
-		<p>Creating a popdown, dropdown, set of tabs or a slide is as easy as adding a class to an element, then linking to it by id. Links that refer to popdowns, dropdowns, tabs and slides are also given the class <code>active</code>, making it easy to create stateful buttons. Transitions to and from active state are defined using CSS transitions.</p>
+			</a>
+			
+			<p>Creating a popdown, dropdown, set of tabs or a slide is as easy as adding a class to an element, then linking to it by id. Links that refer to popdowns, dropdowns, tabs and slides are also given the class <code>active</code>, making it easy to create stateful buttons. Transitions to and from active state are defined using CSS transitions.</p>
+		</div>
 	</div>
 	
 	<div class="site_wrap wrap">
@@ -127,9 +129,10 @@ jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
 	</div>
 	
 	<div class="site_wrap wrap">
-		<h3>.popdown</h3>
-		
-		<p>Popdowns are used to make menus, drawers, and elements that require explicit deactivation. Once active, they deactivate when the user touches or mousedowns outside them, or when a <code>#close</code> link is clicked inside them:</p>
+		<div class="doc_col col">
+			<h3>.popdown</h3>
+			<p>Popdowns are used to make menus, drawers, and elements that require explicit deactivation. Once active, they deactivate when the user touches or mousedowns outside them, or when a <code>#close</code> link is clicked inside them:</p>
+		</div>
 	</div>
 	
 	<div class="example_wrap wrap">
