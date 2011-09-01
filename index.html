@@ -202,7 +202,7 @@ jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
 		<div class="doc_col col">
 			<h3>.slide</h3>
 			<p>Slides are functionally identical to tabs – only one can be active at any one time. They differ in default style, where slides have the popular slide-in-from-the-side animation when they are activated. Slides also react to the special <code>#prev</code> and <code>#next</code> links.</p>
-			<p>Note that slides don't by default have a parent with <code class="css">overflow: hidden</code> – usually you want one of those.</p>
+			<p>Note that slides don't by default have a parent with <code class="css">overflow: hidden;</code>. Usually you want one of those – but not always.</p>
 		</div>
 	</div>
 	
@@ -236,10 +236,10 @@ jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
 				  <p>Time is an illusion. Lunchtime, doubly so.</p>
 				</div
 				><div class="slide" id="slide2">
-				  <p>I'm a great and amazing guy, didn't I tell you baby?</p>
+				  <p>I'm sorry, did you just say you needed my brain?</p>
 				  <ul class="horizontal index">
-				    <li><a href="#prev">prev</a></li
-				   ><li><a href="#next">next</a></li>
+				    <li><a class="button" href="#prev">prev</a></li
+				   ><li><a class="button" href="#next">next</a></li>
 				  </ul>
 				</div>
 			</div>
