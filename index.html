@@ -63,7 +63,21 @@ layout: site
 		
 		<h3>.layer</h3>
 		
-		<p>Layers are absolutely positioned elements that fill their parents' width and height, and are used to create screens behind popups and loading icons, among other things. Layers inherit their parent's <code class="css">border-radius</code> so to avoid sharp corners over parents that have rounded corners.</p>
+		<p>Layers are absolutely positioned elements that fill their parents' width and height, and are used to create screens behind popups and loading icons, among other things.</p>
+	</div>
+
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<div class="layer" style="background-color: orange;"></div>{% endhighlight %}
+				{% highlight js %}jQuery('#vessel').addLoadingIcon();{% endhighlight %}
+				{% highlight js %}jQuery('#vessel').removeLoadingIcon();{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<div class="layer" style="background-color: orange;"></div>
+			</div>
+		</div>
 	</div>
 <section>
 
