@@ -45,10 +45,6 @@ layout: site
 	<h3></h3-->
 </section>
 
-<section>
-	<div class="site_wrap wrap">
-		<h2>CSS</h2>
-
 		<!--h3>.button</h3>
 		
 		<h3>.thumb</h3>
@@ -60,7 +56,41 @@ layout: site
 		<h3>.col</h3>
 		
 		<h3>.wrap</h3-->
+
+<section>
+	<div class="site_wrap wrap">
+		<h3>.wrap</h3>
 		
+		<p>
+			The <code>.wrap</code> class is very basic.
+			It has <code>margin-left: auto; margin-rght: auto;</code>, so that when it is given an explicit width it automatically centres itself horizontally.
+			It also acts as a position parent with <code class="css">position: relative;</code>.
+		</p>
+	</div>
+
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<div class="wrap" style="width: 75%;">
+  <p>Space is big. Really big. You just won't believe how vastly hugely mindbogglingly big it is. I mean, you may think it's a long way down to the chemist's, but that's just peanuts to space.</p>
+</div>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<div class="wrap" style="width: 75%;">
+					<p>
+						Space is big. Really big.
+						You just won't believe how vastly hugely mindbogglingly big it is.
+						I mean, you may think it's a long way down to the chemist's, but that's just peanuts to space.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<div class="site_wrap wrap">
 		<h3>.layer</h3>
 		
 		<p>Layers are absolutely positioned elements that fill their parents' width and height.</p>
@@ -94,9 +124,7 @@ layout: site
 			</div>
 		</div>
 	</div>
-<section>
 
-<section>	
 	<div class="site_wrap wrap">
 		<div class="doc_col col">
 			<h3>.dropdown</h3>
