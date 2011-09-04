@@ -1,48 +1,52 @@
 ---
 layout: site
+title: template
 ---
 
 <section class="site_wrap wrap">
 	<h1>template</h1>
 	
-	<p>A class-based HTML/JS/CSS UI development framework.</p>
+	<p>A class-based HTML/CSS/JS responsive UI development framework.</p>
 	
-	<h2>The project</h2>
+	<h2>Resources</h2>
 	
 	<dl>
 		<dt>repository</dt><dd><a href="http://github.com/webdoc/template">github.com/stephband/template</a></dd>
 		<dt>documentation</dt><dd><a href="http://webdoc.github.com/template">stephband.info/template</a></dd>
 	</dl>
 	
-	<!--h2>Techniques</h2>
+	<p>Template currently aims to support IE7 and above. For a version that is aimed squarely at modern browsers, ignoring even IE8, use the webdoc fork:</p>
 	
-	<p>Before getting started with template, there are a few techniques you should be aware of.</p>
+	<dl>
+		<dt>repository</dt><dd><a href="http://github.com/webdoc/template">github.com/webdoc/template</a></dd>
+		<dt>documentation</dt><dd><a href="http://webdoc.github.com/template">webdoc.github.com/template</a></dd>
+	</dl>
 	
-	<h3>CSS class system</h3>
+	<h2>Project</h2>
 	
-	<p>Classes in Template are organised following</p>
-	
-	<h3>Inline blocks</h3>
-	
-	<p>Template uses <code>inline-block</code> extensively to create horizontal layouts. In fact there are no floats in Template. Inline blocks have advantages over floats:</p>
-	
-	<ul>
-		<li>They stay in the flow, so their parents always 'clear'</li>
-		<li>It is possible to write them in arbitrary content order</li>
-		<li>Inline block layouts can be thought of as a subset of the upcoming box-layout CSS3 module</li>
-	</ul>
-	
-	<p>There is one major gotcha: inline blocks, being inline, are affected by spaces between the blocks. In Template example code, you will frequently see this sort of html formatting:</p>
-	
-	<pre>&lt;div&gt;
-	&lt;/div
-	
-	&gt;&lt;div&gt;
-	&lt;/div&gt;</pre>
-	
-	<p>This is a perfectly valid way to format html while avoiding spaces between inline blocks.</p>
-	
-	<h3></h3-->
+	<p>
+		Template is essentially a library of classes, some of them with javascript behaviours attached, intended for use as base classes in OOCSS-style development, but also useable or as mixins in a SASS or LESS environment.
+	</p>
+	<p>
+		Template concentrates on layout techniques.
+		It gives you flexible columns with arbitrary content order, thumbs with hidden text, horizontal lists, popups that adapt to the size of their contents, drop-downs, tabs and slides, layers that fill the window, and more.
+		It does not give you much colour.
+		This is deliberate.
+		Most sites and webapps require the same layout techniques; few use the same colours.
+	</p>
+	<!--p>
+		Template was originally created for the development of <a href="http://webdoc.com">webdoc.com</a>.
+		It was conceived to reduce code by sharing common CSS and JS.
+		Instead of writing CSS rules for a given technique for multiple elements, template provides a base class that encapsulates that technique. 
+		Instead of including multiple plugins for drop-downs, tabs and slides, many of which do much the same thing – render an element visible – template factors out and shares the common functionality in JS, and leaves the layout techniques to be defined (and overridden) in CSS.
+	</p-->
+	<p>
+		It is not a huge library, it really is just a starting point, but to make the most of it, it is worth understanding the CSS.
+		I'll declare the principal gotcha up-front:
+		Template uses inline-blocks, and never floats, for horizontal layout.
+		Inline blocks require spaceless HTML.
+		More on that at <a href="techniques.html#inlineblocks">techniques.html#inlineblocks</a>.
+	</p>
 </section>
 
 		<!--h3>.button</h3>
@@ -58,6 +62,11 @@ layout: site
 		<h3>.wrap</h3-->
 
 <section>
+	<div class="site_wrap wrap">
+		<h2>Classes</h2>
+	</div>
+	
+	
 	<div class="site_wrap wrap">
 		<h3>.wrap</h3>
 		
@@ -109,7 +118,7 @@ layout: site
 	</div>
 
 	<div class="site_wrap wrap">
-		<p>They are used to create screens behind loading icons and popups, among other things.</p>
+		<p>They are used to create screens behind loading icons and popups, among other things. Click on the javascript to run it:</p>
 	</div>
 	
 	<div class="example_wrap wrap">
