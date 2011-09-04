@@ -22,7 +22,7 @@ title: template
 		<dt>documentation</dt><dd><a href="http://webdoc.github.com/template">webdoc.github.com/template</a></dd>
 	</dl>
 	
-	<h2>Project</h2>
+	<h2>About template</h2>
 	
 	<p>
 		Template is essentially a library of classes, some of them with javascript behaviours attached, intended for use as base classes in OOCSS-style development, but also useable or as mixins in a SASS or LESS environment.
@@ -63,18 +63,42 @@ title: template
 
 <section>
 	<div class="site_wrap wrap">
-		<h2>Classes</h2>
+		<h2>Overview</h2>
+	</div>
+	
+	<div class="site_wrap wrap">
+		<div class="doc_col col">
+			<h3>.clear, .left and .right</h3>
+			<p>Template doesn't use floats itself, but for convenience it does include the popular clear fix, and the classes <code>left</code> and <code>right</code> for floating content.</p>
+		</div>
+	</div>
+
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<div class="clear" style="background-color: #ff9933;">
+  <img class="left" style="width: 100px; height: 60px;" />
+</div>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+<div class="clear" style="background-color: #ff9933;">
+	<img style="float: left; width: 100px; height: 60px;" />
+</div>
+			</div>
+		</div>
 	</div>
 	
 	
 	<div class="site_wrap wrap">
-		<h3>.wrap</h3>
-		
-		<p>
-			The <code>.wrap</code> class is very basic.
-			It has <code>margin-left: auto; margin-rght: auto;</code>, so that when it is given an explicit width it automatically centres itself horizontally.
-			It also acts as a position parent with <code class="css">position: relative;</code>.
-		</p>
+		<div class="doc_col col">
+			<h3>.wrap</h3>
+			<p>
+				The <code>.wrap</code> class is very basic.
+				It has <code>margin-left: auto; margin-rght: auto;</code>, so that when it is given an explicit width it automatically centres itself horizontally.
+				It also acts as a position parent with <code class="css">position: relative;</code>.
+			</p>
+		</div>
 	</div>
 
 	<div class="example_wrap wrap">
@@ -118,7 +142,7 @@ title: template
 	</div>
 
 	<div class="site_wrap wrap">
-		<p>They are used to create screens behind loading icons and popups, among other things. Click on the javascript to run it:</p>
+		<p>They are used to create screens behind loading icons and popups, among other things. Click on a line of javascript to run it:</p>
 	</div>
 	
 	<div class="example_wrap wrap">
@@ -274,62 +298,6 @@ title: template
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-	<div class="site_wrap wrap">
-		<div class="doc_col col">
-			<h2>Activatable elements</h2>
-	
-			<p>Popdowns, dropdowns, tabs and slides are ui elements with two states. When they are visible, they have the class <code>active</code>. When they are not, they don't.</p>
-		
-			<p>They share a common way to trigger active state. Firstly, they are activated when the user clicks on a link that refers to them by id:</p>
-		
-			<a class="nostyle" href="#id_of_dropdown">
-			{% highlight html %}<a href="#id_of_dropdown">Open dropdown</a>{% endhighlight %}
-			</a>
-		
-			<p>Secondly, they can also be activated and deactivated programmatically:</p>
-		
-			<a class="nostyle" href="#id_of_dropdown">
-{% highlight js %}jQuery('#id_of_dropdown').trigger('activate');
-jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
-			</a>
-			
-			<p>Creating a popdown, dropdown, set of tabs or a slide is as easy as adding a class to an element, then linking to it by id. Links that refer to popdowns, dropdowns, tabs and slides are also given the class <code>active</code>, making it easy to create stateful buttons. Transitions to and from active state are defined using CSS transitions.</p>
-		</div>
-	</div>
-
-
-	<div class="site_wrap wrap">
-		<h3>.tab<br/>.slide</h3>
-		<p>Tabs and slides are functionally identical. Two classes are provided for convenience, as tabs and slides tend to be styled very differently. Where we refer to 'tabs' below, assume that we also mean slides.</p>
-		<p>In any group of tabs, only one can be active at any one time. Normally, all <code>.tab</code> or <code>.slide</code> siblings of the tab or slide currently being activated automatically become a group.</p>
-		<p>To be more explicit, the grouping can be overridden with a <code>data-selector</code> attribute containing a selector for all other tabs in the group. The selector can be any that jQuery understands. Here are two tabs grouped using a class selector:</p>
-	</div>
-	
-{% highlight html %}<div class="quote_tab tab" id="ford" data-selector=".quote_tab">
-  <p>Time is an illusion. Lunchtime, doubly so.</p>
-</div
-
-><div class="quote_tab tab" id="zaphod" data-selector=".quote_tab">
-  <p>I'm a great and amazing guy, didn't I tell you baby?</p>
-</div>{% endhighlight %}
-
-<!-- You may be wondering about that odd div closing tag. That's a technique for creating spaceless html. See the section on working with inline-blocks. -->
-	<div class="site_wrap wrap">
-		<p>Of course, this means you can create tab groups from non-sibling elements. A little care must be taken, however; all tabs in a group must share the same <code>data-selector</code>: a tab can only belong to one group, and if it is inadvertently selected by another group it will cause some odd behaviour.</p>
-		<p>Inside tabs and slides, a couple of special links can be used for navigation:</p>
-	</div>
-
-{% highlight html %}<a href="#prev">Previous slide</a>
-<a href="#next">Next slide</a>{% endhighlight %}
-
-	<div class="site_wrap wrap">
-		<p>&#8230;navigating backwards and forwards through the group respectively.</p>
-	</div>
 </section>
 
 
@@ -337,7 +305,7 @@ jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
 
 
 
-<h2>jQuery</h2>
+<!--h2>jQuery</h2>
 
 <p>Template extends jQuery with events and methods.</p>
 
@@ -400,4 +368,4 @@ jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
 
 <h2>inspector branch</h2>
 
-<p>Template for creating inspector iframes.</p>
+<p>Template for creating inspector iframes.</p-->

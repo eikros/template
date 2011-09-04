@@ -41,3 +41,64 @@ layout: site
 <div class="site_wrap wrap">
 	<p>That first <code>li</code> closing tag may look mal-formed, but in fact it is a perfectly valid way to format html while avoiding spaces between inline blocks.</p>
 </div>
+
+
+
+<div class="site_wrap wrap" id="activatable elements">
+  <h2>Activatable elements</h2>
+  
+  <p>Popdowns, dropdowns, tabs and slides are ui elements with two states. When they are visible, they have the class <code>active</code>. When they are not, they don't. They share a common way to trigger active state.</p>
+  
+  <p>Firstly, they are activated when the user clicks on a link that refers to them by id:</p>
+</div>
+
+<div class="example_wrap wrap">
+<div class="site_wrap wrap">
+  {% highlight html %}<a href="#id_of_dropdown">Open dropdown</a>{% endhighlight %}
+</div>
+</div>
+
+<div class="site_wrap wrap">
+  <p>Secondly, they can also be activated and deactivated programmatically:</p>
+</div>
+
+<div class="example_wrap wrap">
+<div class="site_wrap wrap">
+  {% highlight js %}jQuery('#id_of_dropdown').trigger('activate');{% endhighlight %}
+  {% highlight js %}jQuery('#id_of_dropdown').trigger('deactivate');{% endhighlight %}
+</div>
+</div>
+
+<div class="site_wrap wrap">
+  <p>Creating a popdown, dropdown, set of tabs or a slide is as easy as adding a class to an element, then linking to it by id. Links that refer to popdowns, dropdowns, tabs and slides are also given the class <code>active</code>, making it easy to create stateful buttons. Transitions to and from active state are defined using CSS transitions.</p>
+
+  <h3>.tab and .slide</h3>
+  <p>Tabs and slides are functionally identical. Two classes are provided for convenience, as tabs and slides tend to be styled very differently. Where we refer to 'tabs' below, assume that we also mean slides.</p>
+  <p>In any group of tabs, only one can be active at any one time. Normally, all <code>.tab</code> or <code>.slide</code> siblings of the tab or slide currently being activated automatically become a group, but to be more explicit, the grouping can be overridden with a <code>data-selector</code> attribute containing a selector for all other tabs in the group. The selector can be any that jQuery understands. Here are two tabs grouped using a class selector:</p>
+</div>
+
+<div class="example_wrap wrap">
+<div class="site_wrap wrap">
+  {% highlight html %}<div class="quote_tab tab" id="tab1" data-selector=".quote_tab">
+<p>Time is an illusion.</p>
+</div
+
+><div class="quote_tab tab" id="tab2" data-selector=".quote_tab">
+  <p>Lunchtime, doubly so.</p>
+</div>{% endhighlight %}
+</div>
+</div>
+
+  <!-- You may be wondering about that odd div closing tag. That's a technique for creating spaceless html. See the section on working with inline-blocks. -->
+
+<div class="site_wrap wrap">
+  <p>Of course, this means you can create tab groups from non-sibling elements. A little care must be taken, however; all tabs in a group must share the same <code>data-selector</code>: a tab can only belong to one group, and if it is inadvertently selected by another group it will cause some odd behaviour.</p>
+  <p>Inside tabs and slides, a couple of special links can be used for navigation:</p>
+</div>
+
+<div class="example_wrap wrap">
+<div class="site_wrap wrap">
+  {% highlight html %}<a href="#prev">Previous slide</a>
+<a href="#next">Next slide</a>{% endhighlight %}
+</div>
+</div>
