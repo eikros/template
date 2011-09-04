@@ -49,9 +49,7 @@ title: template
 	</p>
 </section>
 
-		<!--h3>.thumb</h3>
-		
-		<h3>.card</h3>
+		<!--h3>.card</h3>
 		
 		<h3>.index</h3>
 		
@@ -127,6 +125,62 @@ title: template
 					Marvin
 					<!--[if lte IE 8]><img src="images/marvin.png" /><[endif]-->
 				</a>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="site_wrap wrap">
+		<div class="doc_col col">
+			<h3>.index</h3>
+			<p>Removes the default styling from list items, so that lists can be used as layout containers for menus, grids, lists of thumbs and so on. Particularly handy for making menus:</p>
+		</div>
+	</div>
+
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<ul class="index">
+  <li><a class="button" href="#">One</a></li>
+  <li><a class="button" href="#">Two</a></li>
+  <li><a class="button" href="#">Three</a></li>
+</ul>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<ul class="index">
+					<li><a class="button" href="#">One</a></li>
+					<li><a class="button" href="#">Two</a></li>
+					<li><a class="button" href="#">Three</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="site_wrap wrap">
+		<div class="doc_col col">
+			<h3>.horizontal</h3>
+			<p>Lays out children horizontally as inline-blocks. Often used on lists in tandem with <code>.index</code> to make horizontal menus:</p>
+		</div>
+	</div>
+
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<ul class="horizontal index">
+  <li><a class="button" href="#">One</a></li
+  ><li><a class="button" href="#">Two</a></li
+  ><li><a class="button" href="#">Three</a></li>
+</ul>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<ul class="horizontal index">
+					<li><a class="button" href="#">One</a></li
+					><li><a class="button" href="#">Two</a></li
+					><li><a class="button" href="#">Three</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
