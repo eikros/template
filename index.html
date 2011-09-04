@@ -49,9 +49,7 @@ title: template
 	</p>
 </section>
 
-		<!--h3>.button</h3>
-		
-		<h3>.thumb</h3>
+		<!--h3>.thumb</h3>
 		
 		<h3>.card</h3>
 		
@@ -80,6 +78,50 @@ title: template
 			
 			<div class="example">
 				<a class="button" href="#">Do not press</a> Buttons aren't toys.
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="site_wrap wrap">
+		<div class="doc_col col">
+			<h3>.thumb</h3>
+			<p>An inline-block with default dimension 64x64 that hides it's text content and fills itself with it's background image. Useful for logos and avatars.</p>
+		</div>
+	</div>
+
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<a class="thumb" href="#" style="background-image: url('images/marvin.png');">Marvin</a>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<a class="thumb" href="#" style="background-image: url('images/marvin.png');">Marvin</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="site_wrap wrap">
+		<div class="doc_col col">
+			<p>IE8 does not support <code>background-sizing</code>, but it does allow resizing of img tags. To include support for IE7 and IE8, include an img tag in conditional comments:</p>
+		</div>
+	</div>
+	
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<a class="thumb" href="#" style="background-image: url('images/marvin.png');">
+  Marvin
+  <!--[if lte IE 8]><img src="images/marvin.png" /><[endif]-->
+</a>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<a class="thumb" href="#" style="background-image: url('images/marvin.png');">
+					Marvin
+					<!--[if lte IE 8]><img src="images/marvin.png" /><[endif]-->
+				</a>
 			</div>
 		</div>
 	</div>
