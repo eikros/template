@@ -82,14 +82,6 @@ title: template
 		</div>
 	</div>
 	
-
-	<div class="site_wrap wrap">
-		<div class="doc_col col">
-			<h3>.thumb</h3>
-			<p>An inline-block with default dimension 64x64 that hides it's text content and fills itself with it's background image. Useful for logos and avatars.</p>
-		</div>
-	</div>
-
 	<div class="example_wrap wrap">
 		<div class="site_wrap wrap">
 			<div class="doc_col col">
@@ -101,10 +93,16 @@ title: template
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="site_wrap wrap">
 		<div class="doc_col col">
-			<p>IE8 does not support <code>background-sizing</code>, but it does allow resizing of img tags. To include support for IE7 and IE8, include an img tag in conditional comments:</p>
+			<h3>.thumb</h3>
+			<p>An inline-block with default dimension 64x64 that hides it's text content and fills itself with it's background image. Useful for logos and avatars.</p>
+			<p>
+				IE8 does not support <code>background-sizing</code>, but it does allow resizing of img tags.
+				To include support for IE8 and below, you can include an <code>img</code> tag in conditional comments.
+				This is not necessary if the background image is already the same dimensions as the thumb.
+			</p>
 		</div>
 	</div>
 	

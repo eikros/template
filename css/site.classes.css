@@ -4,8 +4,12 @@
 	width: 88%;
 }
 
+h3 {
+	margin-top: 2.8571em;
+}
+
 .example_wrap {
-	margin-bottom: 2.8571em;
+	margin-bottom: 0.7143em;
 }
 
 .example_wrap > .site_wrap {
