@@ -25,6 +25,24 @@ h3 {
 	left: 0;
 }
 
+.example_col {
+	width: 33%;
+	margin-right: -33%;
+	left: 67%;
+	
+	margin-top: -0.7143em;
+	margin-bottom: -0.7143em;
+	padding-left: 0.7143em;
+	padding-right: 0.7143em;
+	padding-top: 0.7143em;
+	padding-bottom: 0.7143em;
+	
+	min-height: 4.2em;
+	
+	color: hsl(204,10%,90%);
+	background-color: rgba(220,220,220,0.4);
+}
+
 .example {
 	position: absolute;
 	right: 0;
@@ -40,6 +58,7 @@ h3 {
 	background-color: rgba(220,220,220,0.4);
 }
 
-.example a {
+.example a,
+.example_col a {
 	color: white;
 }
