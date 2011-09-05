@@ -15,21 +15,22 @@ title: template
 		<dt>documentation</dt><dd><a href="http://webdoc.github.com/template">stephband.info/template</a></dd>
 	</dl>
 	
-	<p>Template currently aims to support IE7 and above. For a version that is aimed squarely at modern browsers, ignoring even IE8, use the webdoc fork:</p>
+	<!--p>Template currently aims to support IE7 and above. For a version that is aimed squarely at modern browsers, ignoring even IE8, use the webdoc fork:</p>
 	
 	<dl>
 		<dt>repository</dt><dd><a href="http://github.com/webdoc/template">github.com/webdoc/template</a></dd>
 		<dt>documentation</dt><dd><a href="http://webdoc.github.com/template">webdoc.github.com/template</a></dd>
 	</dl>
 	
-	<h2>About template</h2>
+	<h2>About template</h2-->
 	
 	<p>
-		Template is essentially a library of classes, some of them with javascript behaviours attached, intended for use as base classes in OOCSS-style development, but also useable or as mixins in a SASS or LESS environment.
+		Template is essentially a library of classes that encapsulate layout techniques, some of them with javascript behaviours attached, intended for use as base classes in OOCSS-style development, but also useable as mixins.
 	</p>
 	<p>
-		Template concentrates on layout techniques.
-		It gives you flexible columns with arbitrary content order, thumbs with hidden text, horizontal lists, popups that adapt to the size of their contents, drop-downs, tabs and slides, layers that fill the window, and more.
+		Template gives you flexible columns with arbitrary content order, thumbs with hidden text, horizontal lists, popups that adapt to the size of their contents, drop-downs, tabs and slides, layers that fill the window, and more.
+	</p>
+	<p>
 		It does not give you much colour.
 		This is deliberate.
 		Most sites and webapps require the same layout techniques; few use the same colours.
@@ -40,18 +41,16 @@ title: template
 		Instead of writing CSS rules for a given technique for multiple elements, template provides a base class that encapsulates that technique. 
 		Instead of including multiple plugins for drop-downs, tabs and slides, many of which do much the same thing – render an element visible – template factors out and shares the common functionality in JS, and leaves the layout techniques to be defined (and overridden) in CSS.
 	</p-->
-	<p>
+	<!--p>
 		It is not a huge library, it really is just a starting point, but to make the most of it, it is worth understanding the CSS.
 		I'll declare the principal gotcha up-front:
 		Template uses inline-blocks, and never floats, for horizontal layout.
 		Inline blocks require spaceless HTML.
 		More on that at <a href="techniques.html#inlineblocks">techniques.html#inlineblocks</a>.
-	</p>
+	</p-->
 </section>
 
 		<!--h3>.card</h3>
-		
-		<h3>.index</h3>
 		
 		<h3>.col</h3-->
 
@@ -61,7 +60,7 @@ title: template
 	</div>
 	
 	
-	<div class="site_wrap wrap">
+	<div class="site_wrap wrap" id="button_class">
 		<div class="doc_col col">
 			<h3>.button</h3>
 			<p>An inline-block with centred text that aligns to the baseline of surrounding text.</p>
@@ -82,7 +81,7 @@ title: template
 	
 	
 	
-	<div class="site_wrap wrap">
+	<div class="site_wrap wrap" id="thumb_class">
 		<div class="doc_col col">
 			<h3>.thumb</h3>
 			<p>An inline-block with default dimension 64x64 that hides it's text content and fills itself with it's background image. Useful for logos and avatars.</p>
@@ -101,12 +100,12 @@ title: template
 		</div>
 	</div>
 	
-	<div class="site_wrap wrap">
+	<!--div class="site_wrap wrap">
 		<div class="doc_col col">
 			<p>
-				IE8 does not support <code>background-sizing</code>, but it does allow resizing of img tags.
-				To include support for IE8 and below, you can include an <code>img</code> tag in conditional comments.
-				This is not necessary if the background image is already the same dimensions as the thumb.
+				When the background image is not the same size as the thumb, IE8 and below will not re-dimension the image because it does not support <code>background-sizing</code>.
+				However, it does allow resizing of img tags.
+				To include support for IE8 and below, include an <code>img</code> tag in conditional comments.
 			</p>
 		</div>
 	</div>
@@ -124,13 +123,39 @@ title: template
 				<a class="thumb" href="#" style="background-image: url('images/marvin.png');">
 					Marvin
 					<!--[if lte IE 8]><img src="images/marvin.png" /><[endif]-->
+				<!--/a>
+			</div>
+		</div>
+	</div-->
+	
+	
+	
+	<div class="site_wrap wrap" id="card_class">
+		<div class="doc_col col">
+			<h3>.card</h3>
+			<p>A common way of displaying user or product information, a card is a block that places a <code>.thumb</code> on the left and aligns text to the right.</p>
+		</div>
+	</div>
+	
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+				{% highlight html %}<a class="thumb" href="#" style="background-image: url('images/marvin.png');">Marvin</a>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<a class="card" href="#">
+					<h4>Marvin</h4>
+					<p>Life. Don't talk to me about life.</p>
+					<div class="thumb" href="#" style="background-image: url('images/marvin.png');">Marvin</div>
 				</a>
 			</div>
 		</div>
 	</div>
 	
 	
-	<div class="site_wrap wrap">
+	
+	<div class="site_wrap wrap" id="index_class">
 		<div class="doc_col col">
 			<h3>.index</h3>
 			<p>Removes the default styling from list items, so that lists can be used as layout containers for menus, grids, lists of thumbs and so on. Particularly handy for making menus:</p>
@@ -158,7 +183,7 @@ title: template
 	</div>
 	
 	
-	<div class="site_wrap wrap">
+	<div class="site_wrap wrap" id="horizontal_class">
 		<div class="doc_col col">
 			<h3>.horizontal</h3>
 			<p>Lays out children horizontally as inline-blocks. Often used on lists in tandem with <code>.index</code> to make horizontal menus:</p>
@@ -185,29 +210,166 @@ title: template
 		</div>
 	</div>
 	
-	
 	<div class="site_wrap wrap">
 		<div class="doc_col col">
-			<h3>.clear, .left and .right</h3>
-			<p>Template doesn't use floats itself, but for convenience it does include the popular clear fix, and the classes <code>left</code> and <code>right</code> for floating content.</p>
+			<p>Generally, the use of non-semantic classes is discouraged – a row of elements that you want laid out horizontally on a big screen, you may want laid out vertically on a small screen – however, the class <code>horizontal</code> can be very useful for fast prototyping, and for use as a mixin.</p>
 		</div>
 	</div>
-
+	
+	
+	
+	<div class="site_wrap wrap" id="dropdown_class">
+		<div class="doc_col col">
+			<h3>.dropdown</h3>
+			<p>Dropdowns are used to make menus and navigation. Once active, they deactivate when the user touches or mousedowns outside them, or when the user clicks on or inside them.</p>
+		</div>
+	</div>
+	
 	<div class="example_wrap wrap">
 		<div class="site_wrap wrap">
 			<div class="doc_col col">
-				{% highlight html %}<div class="clear" style="background-color: #ff9933;">
-  <img class="left" style="width: 100px; height: 60px;" />
+				{% highlight html %}<a href="#arthur">Open dropdown</a>
+
+<div class="dropdown" id="arthur">
+  <p>There is an infinite number of monkeys outside, who want to
+  talk to us about this script for Hamlet they have worked out.</p>
 </div>{% endhighlight %}
 			</div>
 			
 			<div class="example">
-				<div class="clear" style="background-color: #ff9933;">
-					<img style="float: left; width: 100px; height: 60px;" />
+				<a href="#arthur">Dropdown</a>
+				
+				<div class="dropdown" id="arthur">
+					<p>There is an infinite number of monkeys outside, who want to talk to us about this script for Hamlet they have worked out.</p>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	<div class="site_wrap wrap" id="popdown_class">
+		<div class="doc_col col">
+			<h3>.popdown</h3>
+			<p>Popdowns are used to make menus, drawers, and elements that require explicit deactivation. Once active, they deactivate when the user touches or mousedowns outside them, or when a <code>#close</code> link is clicked inside them:</p>
+		</div>
+	</div>
+	
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+{% highlight html %}<a href="#earth">Popdown</a>
+				
+<div class="popdown" id="earth">
+  <p>Mostly harmless.</p>
+  <a href="#close">Close</a>
+</div>{% endhighlight %}
+			</div>
+				
+			<div class="example">
+				<a href="#earth">Popdown</a>
+				
+				<div class="popdown" id="earth">
+					<p>Mostly harmless.</p>
+					<a href="#close">Close</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="site_wrap wrap" id="tab_class">
+		<div class="doc_col col">
+			<h3>.tab</h3>
+			<p>In any group of tabs, only one can be active at any one time. Normally, all <code>.tab</code> siblings of the tab or slide currently being activated automatically become a group, but it is possible to explicitly create groups.</p>
+		</div>
+	</div>
+	
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+{% highlight html %}<ul class="tabs_index index">
+  <li><a class="tab_button button" href="#tab1">Tab 1</a></li
+ ><li><a class="tab_button button" href="#tab2">Tab 2</a></li>
+</ul>
+
+<div class="tab" id="tab1">
+  <p>Time is an illusion.</p>
+</div
+><div class="tab" id="tab2">
+  <p>Lunchtime, doubly so.</p>
+</div>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<ul class="tabs_index index">
+				  <li><a class="tab_button button" href="#tab1">Tab 1</a></li
+				 ><li><a class="tab_button button" href="#tab2">Tab 2</a></li>
+				</ul>
+				
+				<div class="tab" id="tab1">
+				  <p>Time is an illusion.</p>
+				</div
+				><div class="tab" id="tab2">
+				  <p>Lunchtime, doubly so.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="site_wrap wrap">
+		<div class="doc_col col">
+			<h3>.slide</h3>
+			<p>
+				Slides are functionally identical to tabs – only one can be active at any one time.
+				They differ in default style, where slides have the popular slide-in-from-the-side animation when they are activated.
+				Slides also react to the special <code>#prev</code> and <code>#next</code> links.
+			</p>
+			<p>
+				Note that slides don't by default have a parent with <code class="css">overflow: hidden;</code>.
+				Usually you want one of those – but not always.
+			</p>
+		</div>
+	</div>
+	
+	<div class="example_wrap wrap">
+		<div class="site_wrap wrap">
+			<div class="doc_col col">
+{% highlight html %}<ul class="horizontal index">
+  <li><a class="slide_button button" href="#slide1">Slide 1</a></li
+ ><li><a class="slide_button button" href="#slide2">Slide 2</a></li>
+</ul>
+
+<div class="slide" id="slide1">
+  <p>It is cheaper.</p>
+  <a class="button" href="#next">next</a>
+</div
+><div class="slide" id="slide2">
+  <p>It has the words 'Don't Panic' printed in big, friendly letters on its cover.</p>
+  <a class="button" href="#prev">prev</a>
+</div>{% endhighlight %}
+			</div>
+			
+			<div class="example">
+				<ul class="horizontal index">
+				  <li><a class="slide_button button" href="#slide1">Slide 1</a></li
+				 ><li><a class="slide_button button" href="#slide2">Slide 2</a></li>
+				</ul>
+				
+				<div class="slide" id="slide1">
+				  <p>It is cheaper.</p>
+				  <a class="button" href="#next">next</a>
+				</div
+				><div class="slide" id="slide2">
+				  <p>It has the words 'Don't Panic' printed in big, friendly letters on its cover.</p>
+				  <a class="button" href="#prev">prev</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	
 	
 	<div class="site_wrap wrap">
@@ -275,143 +437,26 @@ title: template
 			</div>
 		</div>
 	</div>
-
+	
+	
 	<div class="site_wrap wrap">
 		<div class="doc_col col">
-			<h3>.dropdown</h3>
-			<p>Dropdowns are used to make menus and navigation. Once active, they deactivate when the user touches or mousedowns outside them, or when the user clicks on or inside them.</p>
+			<h3>.clear, .left and .right</h3>
+			<p>Template doesn't use floats itself, but for convenience it does include the popular clear fix, and the classes <code>left</code> and <code>right</code> for floating content.</p>
 		</div>
 	</div>
-	
+
 	<div class="example_wrap wrap">
 		<div class="site_wrap wrap">
 			<div class="doc_col col">
-				{% highlight html %}<a href="#arthur">Open dropdown</a>
-
-<div class="dropdown" id="arthur">
-  <p>There is an infinite number of monkeys outside, who want to
-  talk to us about this script for Hamlet they have worked out.</p>
+				{% highlight html %}<div class="clear" style="background-color: #ff9933;">
+  <img class="left" style="width: 100px; height: 60px;" />
 </div>{% endhighlight %}
 			</div>
 			
 			<div class="example">
-				<a href="#arthur">Dropdown</a>
-				
-				<div class="dropdown" id="arthur">
-					<p>There is an infinite number of monkeys outside, who want to talk to us about this script for Hamlet they have worked out.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="site_wrap wrap">
-		<div class="doc_col col">
-			<h3>.popdown</h3>
-			<p>Popdowns are used to make menus, drawers, and elements that require explicit deactivation. Once active, they deactivate when the user touches or mousedowns outside them, or when a <code>#close</code> link is clicked inside them:</p>
-		</div>
-	</div>
-	
-	<div class="example_wrap wrap">
-		<div class="site_wrap wrap">
-			<div class="doc_col col">
-{% highlight html %}<a href="#earth">Popdown</a>
-				
-<div class="popdown" id="earth">
-  <p>Mostly harmless.</p>
-  <a href="#close">Close</a>
-</div>{% endhighlight %}
-			</div>
-				
-			<div class="example">
-				<a href="#earth">Popdown</a>
-				
-				<div class="popdown" id="earth">
-					<p>Mostly harmless.</p>
-					<a href="#close">Close</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="site_wrap wrap">
-		<div class="doc_col col">
-			<h3>.tab</h3>
-			<p>In any group of tabs, only one can be active at any one time. Normally, all <code>.tab</code> siblings of the tab or slide currently being activated automatically become a group, but it is possible to explicitly create groups.</p>
-		</div>
-	</div>
-	
-	<div class="example_wrap wrap">
-		<div class="site_wrap wrap">
-			<div class="doc_col col">
-{% highlight html %}<ul class="tabs_index index">
-  <li><a class="tab_button button" href="#tab1">Tab 1</a></li
- ><li><a class="tab_button button" href="#tab2">Tab 2</a></li>
-</ul>
-
-<div class="tab" id="tab1">
-  <p>Time is an illusion.</p>
-</div
-><div class="tab" id="tab2">
-  <p>Lunchtime, doubly so.</p>
-</div>{% endhighlight %}
-			</div>
-			
-			<div class="example">
-				<ul class="tabs_index index">
-				  <li><a class="tab_button button" href="#tab1">Tab 1</a></li
-				 ><li><a class="tab_button button" href="#tab2">Tab 2</a></li>
-				</ul>
-				
-				<div class="tab" id="tab1">
-				  <p>Time is an illusion.</p>
-				</div
-				><div class="tab" id="tab2">
-				  <p>Lunchtime, doubly so.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	<div class="site_wrap wrap">
-		<div class="doc_col col">
-			<h3>.slide</h3>
-			<p>Slides are functionally identical to tabs – only one can be active at any one time. They differ in default style, where slides have the popular slide-in-from-the-side animation when they are activated. Slides also react to the special <code>#prev</code> and <code>#next</code> links.</p>
-			<p>Note that slides don't by default have a parent with <code class="css">overflow: hidden;</code>. Usually you want one of those – but not always.</p>
-		</div>
-	</div>
-	
-	<div class="example_wrap wrap">
-		<div class="site_wrap wrap">
-			<div class="doc_col col">
-{% highlight html %}<ul class="horizontal index">
-  <li><a class="slide_button button" href="#slide1">Slide 1</a></li
- ><li><a class="slide_button button" href="#slide2">Slide 2</a></li>
-</ul>
-
-<div class="slide" id="slide1">
-  <p>Time is an illusion. Lunchtime, doubly so.</p>
-  <a class="button" href="#next">next</a>
-</div
-><div class="slide" id="slide2">
-  <p>Did you just say you needed my brain?</p>
-  <a class="button" href="#prev">prev</a>
-</div>{% endhighlight %}
-			</div>
-			
-			<div class="example">
-				<ul class="horizontal index">
-				  <li><a class="slide_button button" href="#slide1">Slide 1</a></li
-				 ><li><a class="slide_button button" href="#slide2">Slide 2</a></li>
-				</ul>
-				
-				<div class="slide" id="slide1">
-				  <p>Time is an illusion. Lunchtime, doubly so.</p>
-				  <a class="button" href="#next">next</a>
-				</div
-				><div class="slide" id="slide2">
-				  <p>Did you just say you needed my brain?</p>
-				  <a class="button" href="#prev">prev</a>
+				<div class="clear" style="background-color: #ff9933;">
+					<img style="float: left; width: 100px; height: 60px;" />
 				</div>
 			</div>
 		</div>
