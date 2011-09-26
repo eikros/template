@@ -1111,7 +1111,7 @@
   background-size: auto;
   white-space: nowrap;
   
-  background-image: url('../../images/thumbs/browser_logos.png');
+  background-image: url('../../images/thumbs/logos_browsers.png');
   -moz-background-size: 342px 64px;
        background-size: 342px 64px;
 }
@@ -1123,7 +1123,7 @@
 .ie_browser_thumb       { background-position: -272px 0; }
 
 .chromeframe_browser_thumb {
-  background-image: url('/images/thumbs/logo_chromeframe.gif');
+  background-image: url('../../images/thumbs/logo_chromeframe.gif');
   background-position: 0 0;
   
   -moz-background-size: 64px 64px;
