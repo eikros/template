@@ -79,7 +79,13 @@
 	
 	-webkit-transition: opacity 0.06s ease-in;
 	   -moz-transition: opacity 0.06s ease-in;
+	    -ms-transition: opacity 0.06s ease-in;
+	     -o-transition: opacity 0.06s ease-in;
 	        transition: opacity 0.06s ease-in;
+}
+
+.popup_layer > * {
+	text-align: left;
 }
 
 .popup_layer.active {
@@ -88,6 +94,8 @@
 	
 	-webkit-transition: opacity 0.12s ease-in;
 	   -moz-transition: opacity 0.12s ease-in;
+	    -ms-transition: opacity 0.12s ease-in;
+	     -o-transition: opacity 0.12s ease-in;
 	        transition: opacity 0.12s ease-in;
 }
 
@@ -178,6 +186,7 @@
 	
 	-webkit-transition: opacity 0.16s ease-in;
 	   -moz-transition: opacity 0.16s ease-in;
+	    -ms-transition: opacity 0.16s ease-in;
 	     -o-transition: opacity 0.16s ease-in;
 	        transition: opacity 0.16s ease-in;
 	
@@ -210,6 +219,8 @@
 .no_transition {
   -webkit-transition: none !important;
   -moz-transition:    none !important;
+  -ms-transition:     none !important;
+  -o-transition:      none !important;
   transition:         none !important;
 }
 
@@ -804,6 +815,8 @@
 	
 	-webkit-transition: opacity 0.12s ease-in;
 	   -moz-transition: opacity 0.12s ease-in;
+	    -ms-transition: opacity 0.12s ease-in;
+	     -o-transition: opacity 0.12s ease-in;
 	        transition: opacity 0.12s ease-in;
 }
 
@@ -814,6 +827,8 @@
 	
 	-webkit-transition: opacity 0.12s ease-out;
 	   -moz-transition: opacity 0.12s ease-out;
+	    -ms-transition: opacity 0.12s ease-out;
+	     -o-transition: opacity 0.12s ease-out;
 	        transition: opacity 0.12s ease-out;
 }
 
@@ -837,6 +852,8 @@
 	
 	-webkit-transition: left 0.33s ease-in;
 	   -moz-transition: left 0.33s ease-in;
+	    -ms-transition: left 0.33s ease-in;
+	     -o-transition: left 0.33s ease-in;
 	        transition: left 0.33s ease-in;
 }
 
@@ -869,6 +886,8 @@
   
   -webkit-transition: opacity 0.18s ease-out, top 0.18s ease-out;
      -moz-transition: opacity 0.18s ease-out, top 0.18s ease-out;
+      -ms-transition: opacity 0.18s ease-out, top 0.18s ease-out;
+       -o-transition: opacity 0.18s ease-out, top 0.18s ease-out;
           transition: opacity 0.18s ease-out, top 0.18s ease-out;
 }
 
@@ -881,6 +900,8 @@
   
   -webkit-transition: opacity 0.06s ease-in, top 0.06s ease-in;
      -moz-transition: opacity 0.06s ease-in, top 0.06s ease-in;
+      -ms-transition: opacity 0.06s ease-in, top 0.06s ease-in;
+       -o-transition: opacity 0.06s ease-in, top 0.06s ease-in;
           transition: opacity 0.06s ease-in, top 0.06s ease-in;
 }
 
@@ -895,6 +916,8 @@
 
 	-webkit-transition: height 0.18s ease-in, margin-bottom 0.18s ease-in, padding-top 0.18s ease-in, padding-bottom 0.18s ease-in;
 	   -moz-transition: height 0.18s ease-in, margin-bottom 0.18s ease-in, padding-top 0.18s ease-in, padding-bottom 0.18s ease-in;
+	    -ms-transition: height 0.18s ease-in, margin-bottom 0.18s ease-in, padding-top 0.18s ease-in, padding-bottom 0.18s ease-in;
+	     -o-transition: height 0.18s ease-in, margin-bottom 0.18s ease-in, padding-top 0.18s ease-in, padding-bottom 0.18s ease-in;
 	        transition: height 0.18s ease-in, margin-bottom 0.18s ease-in, padding-top 0.18s ease-in, padding-bottom 0.18s ease-in;
 }
 
@@ -908,6 +931,8 @@
   
 	-webkit-transition: height 0.06s ease-in, margin-bottom 0.06s ease-in, padding-top 0.06s ease-in, padding-bottom 0.06s ease-in;
 	   -moz-transition: height 0.06s ease-in, margin-bottom 0.06s ease-in, padding-top 0.06s ease-in, padding-bottom 0.06s ease-in;
+	    -ms-transition: height 0.06s ease-in, margin-bottom 0.06s ease-in, padding-top 0.06s ease-in, padding-bottom 0.06s ease-in;
+	     -o-transition: height 0.06s ease-in, margin-bottom 0.06s ease-in, padding-top 0.06s ease-in, padding-bottom 0.06s ease-in;
 	        transition: height 0.06s ease-in, margin-bottom 0.06s ease-in, padding-top 0.06s ease-in, padding-bottom 0.06s ease-in;
 }
 
@@ -1000,7 +1025,8 @@
 /* .thumb */
 
 .thumb {
-  display: block;
+  display: inline-block;
+  vertical-align: baseline;
   overflow: hidden;
   
   /* Hide overflowing text. This technique is better
@@ -1020,6 +1046,11 @@
   
   text-decoration: none;
   color: inherit;
+}
+
+.banner_thumb {
+	display: block;
+	width: auto;
 }
 
 .text_thumb,
