@@ -21,7 +21,8 @@ jQuery.noConflict();
 // Handle dropdowns, popdowns and tabs
 
 (function( jQuery, undefined ){
-	var classes = {
+	var debug = (window.console && window.console.log),
+	    classes = {
 	    	'.tab': {
 	    		activate: activatePane
 	    	},
@@ -97,32 +98,37 @@ jQuery.noConflict();
 	    		activate: function(e) {
 	    			var target = jQuery(e.currentTarget);
 	    			
+	    			// Only if activate was triggered on the popup
+	    			if (e.currentTarget !== e.target) { return; }
+	    			
+	    			if (debug) { console.log('activating popup'); }
+	    			
 	    			jQuery(target.html()).popup(target.data("popup"));
 	    			
 	    			e.preventDefault();
 	    		}
 	    	}
 	    },
-	
+
 	    selector = Object.keys(classes).join(', ');
-	
+
 	function activate(elem) {
 		elem.trigger('activate');
 	}
-	
+
 	function deactivate(elem) {
 		elem.trigger('deactivate');
 	}
-	
+
 	function preventDefault(e) {
 		e.preventDefault();
 	}
-	
+
 	function activatePane(e) {
 	  var pane = jQuery(e.target),
 	      data = pane.data('activePane'),
 		    selector, panes, l;
-	      
+	  
 		function prev(e) {
 			// A prevented default indicates that this link has already
 			// been handled, possibly by an inner pane.
@@ -178,11 +184,18 @@ jQuery.noConflict();
 	  	panes = data.panes;
 	  }
 	  
-	  panes.trigger('deactivate');
+	  panes.not(e.target).trigger('deactivate');
 	  
 	  pane.delegate('a[href="#prev"]', 'click', prev);
 	  pane.delegate('a[href="#next"]', 'click', next);
 	  jQuery.event.add(pane[0], 'deactivate', deactivate);
+	}
+	
+	function activateTip(e) {
+		var target = jQuery(e.currentTarget),
+		    relatedTarget = jQuery(e.relatedTarget);
+		
+		target.css(relatedTarget.offset());
 	}
 	
 	function click(e) {
@@ -226,7 +239,9 @@ jQuery.noConflict();
 		
 		// Decide what type this object is.
 		if (data && data.type) {
-			type = data.type;
+			// Check if this type is in classes - if not, we don't want to
+			// be activating it on mousedown.
+			type = (classes[data.type] && data.type);
 		}
 		else {
 			for (t in classes) {
@@ -243,19 +258,58 @@ jQuery.noConflict();
 		
 		e.preventDefault();
 		
+		link.unbind('click', preventDefault);
 		link.bind('click', preventDefault);
 		
-		if ((data && data.state) || elem.hasClass('active')) {
-			
+		if ((data && data.state) || (!data && elem.hasClass('active'))) {
+			// Element is already active. Do nothing.
 		}
 		else {
-			elem.trigger('activate');
-			
 			if (!data) {
-			  jQuery.data(elem[0], 'active').type = type;
+				jQuery.data(elem[0], 'active', { type: type, elem: elem });
 			}
+			
+			elem.trigger({ type: 'activate', relatedTarget: e.currentTarget });
 		}
 	})
+
+	// Mouseover on links toggle activate on their targets
+	.delegate('a[href^="#"], [data-tip]', 'mouseover mouseout', function(e) {
+		var link, href, elem, data, type, t;
+		
+		link = jQuery(e.currentTarget);
+		href = link.data('tip');
+		
+		if (href) {
+			if (!(/^#/.test(href))) {
+				console.log('This tip does not reference an id. It must be text. Template doesn\'t support this yet. It says:', href);
+			}
+		}
+		else {
+			href = link.attr('href');
+		}
+		
+		elem = jQuery(href);
+		
+		if (elem.length === 0) { return; }
+		
+		// Get the active data that may have been created by a previous
+		// activate event.
+		data = jQuery.data(elem[0], 'active');
+		
+		type = (data && data.type) || (elem.is('.tip') ? '.tip' : undefined);
+		
+		// If it has not type tip, we have no business trying to activate
+		// it on hover.
+		if (type !== '.tip') { return; }
+		
+		if (!data) {
+		  jQuery.data(elem[0], 'active', { type: type, elem: elem });
+		}
+		
+		elem.trigger(e.type === 'mouseover' ? { type: 'activate', relatedTarget: e.currentTarget } : 'deactivate');
+	})
+	.delegate('.tip', 'activate', activateTip)
 	.delegate('.tab', 'activate', classes['.tab'].activate)
 	.delegate('.slide', 'activate', classes['.slide'].activate)
 	.delegate('.popup', 'activate', classes['.popup'].activate)
@@ -288,6 +342,13 @@ jQuery.noConflict();
 	}
 	
 	doc
+	
+	// Readonly inputs have their text selected when you click
+	// on them.
+	
+	.delegate('input[readonly]', 'focus click', function(e) {
+		jQuery(e.currentTarget).select();
+	})
 	
 	// Extend the events emitted by input[type='range']
 	// nodes with changestart and changeend events.

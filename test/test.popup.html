@@ -5,15 +5,22 @@
 	<meta name="author" content="">
 	<meta name="description" content="">
 	
-	<title>QUnit event.activate test</title>
+	<title>Title</title>
 	
 	<script>document.documentElement.className = 'js';</script>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 	<!-- Force latest IE rendering engine & Chrome Frame -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<!-- Make IE recognise HTML5 elements for styling (must stay in the head, before elements are used) -->
-	<!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!-- Make IE recognise HTML5 elements for styling -->
+	<!--[if lte IE 8]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<noscript>  
+		<strong>Warning !</strong>
+		Because your browser does not support HTML5, some elements are simulated using JScript.
+		Unfortunately your browser has JScript disabled. Please enable it in order to display this page.  
+	</noscript>
+	<![endif]-->
 	<!-- Disable image toolbar in IE6 -->
 	<!--[if lte IE 6]><meta http-equiv="imagetoolbar" content="no" /><![endif]-->
 	
@@ -22,63 +29,35 @@
 	
 	<link rel="stylesheet" type="text/css" href="../css/template.reset.css" />
 	<link rel="stylesheet" type="text/css" href="../css/template.typography.css" />
-	<link rel="stylesheet" type="text/css" href="../css/template.typography.14_24.css" />
+	<link rel="stylesheet" type="text/css" href="../css/template.typography.12_20.css" />
 	<link rel="stylesheet" type="text/css" href="../css/template.forms.css" />
 	<link rel="stylesheet" type="text/css" href="../css/template.classes.css" />
 	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="../css/template.ie.css" /><![endif]-->
 	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="../css/template.ie8.css" /><![endif]-->
 	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="../css/template.ie7.css" /><![endif]-->
 	<!--[if IE 6]><link rel="stylesheet" type="text/css" href="../css/template.ie6.css" /><![endif]-->
-	
-	<!-- testing -->
-	<link rel="stylesheet" type="text/css" href="../../qunit/qunit/qunit.css" media="screen">
-	<link rel="stylesheet" type="text/css" href="css/test.css" />
+	<link rel="stylesheet" type="text/css" href="../css/template.debug.css" />
 </head>
 
 <body>
-	<div id="qunit-fixture">
-		<a href="#test1">Activate link 1</a>
-		<a href="#test1">Activate link 2</a>
-
-		<a href="#test2">Activate link 3</a>
-		<a href="#test2">Activate link 4</a>
-		
-		<a href="#test3">Activate link 5</a>
-		<a href="#test3">Activate link 6</a>
-		
-		<a href="#test4">Activate link 5</a>
-		<a href="#test4">Activate link 6</a>
-		
-		<a href="#" class="link_test5">Activate link 7</a>
-		<a href="#" class="link_test5">Activate link 8</a>
-		
-		<div id="test1"></div>
-		
-		<div id="test2"></div>
-		
-		<div id="test3" class="dropdown"></div>
-		
-		<div id="test4" class="tab"></div>
-		
-		<a href="#" class="test5"></a>
-	</div>
+	<div class="popup_layer layer active"
+		><section class="popup">
+			<h1>Popup</h1>
+			<p>I am a popup. I should center, horizonatlly and vertically.</p>
+		</section
+	></div>
 	
-	<h1 id="qunit-header">/template</h1>
-	<h2 id="qunit-banner"></h2>
-	<div id="qunit-testrunner-toolbar"></div>
-	<h2 id="qunit-userAgent"></h2>
-	<ol id="qunit-tests"></ol>
-	
+	<!--[if IE 6]><script src="iepngfix/iepngfix_tilebg.js"></script><![endif]-->
+	<script src="../js/js.extensions.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="../js/jquery.js"%3E%3C/script%3E'));</script>
-	<script src="../js/jquery.event.activate.js"></script>
 	<script src="../js/jquery.extensions.js"></script>
+	<script src="../js/jquery.event.activate.js"></script>
+	<script src="../js/jquery.validator.js"></script>
 	<script src="../js/jquery.transitions.js"></script>
+	<script src="../js/jquery.loading.js"></script>
+	<script src="../js/jquery.popup.js"></script>
 	<script src="../js/template.ui.js"></script>
-	
-	<!-- testing -->
-	<script src="../../qunit/qunit/qunit.js"></script>
-	<script src="js/qunit.event.activate.js"></script>
-	<script src="/testswarm/js/inject.js"></script>
+	<script src="../js/js.details.js"></script>
 </body>
 </html>
