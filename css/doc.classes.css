@@ -1,0 +1,181 @@
+body {
+  background: rgb(240,240,240);
+  padding-bottom: 3.25em;
+}
+
+.site_wrap {
+  margin-left: 1em;
+  margin-right: 2em;
+  width: auto;
+}
+
+.method_title {
+	margin-top: 2.4em;
+	margin-bottom: 0.6em;
+  color: rgb(47,47,47);
+}
+
+.nav_title {
+  font-size: 1.5em;
+  padding-left: 0.5555em;
+}
+
+body > .site_wrap {
+  margin: 0;
+  padding: 0;
+}
+
+.api_wrap {
+  padding-left: 24em;
+  padding-right: 2em;
+  
+  max-width: 86em;
+  margin-left: 0;
+}
+
+.api_wrap p,
+.api_wrap pre,
+.api_wrap ul,
+.api_wrap dl,
+.api_wrap ol,
+.api_wrap table,
+.api_wrap iframe {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.api_wrap > .tab > p,
+.api_wrap > .tab > pre,
+.api_wrap > .tab > ul,
+.api_wrap > .tab > dl,
+.api_wrap > .tab > ol,
+.api_wrap > .tab > table,
+.api_wrap > .tab > iframe {
+  margin-left: 2.5em;
+}
+
+.menu_button {
+	text-align: right;
+}
+
+.api_nav {
+  position: fixed;
+  z-index: 2;
+  top: 3.8333em;
+  left: 0;
+  bottom: 0;
+  width: 22em;
+  padding: 3.6667em 1em 1em;
+  
+  overflow: auto;
+  
+  border-right: 1px solid #666666;
+  background-color: rgb(200,200,200);
+  background-image: -webkit-linear-gradient( left, transparent, transparent 97%, rgba(0,0,0,0.2) ), url(/assets/bg.png);
+  background-image:    -moz-linear-gradient( left, transparent, transparent 97%, rgba(0,0,0,0.2) ), url(/assets/bg.png);
+  background-image:      -o-linear-gradient( left, transparent, transparent 97%, rgba(0,0,0,0.2) ), url(/assets/bg.png);
+  background-image:         linear-gradient( left, transparent, transparent 97%, rgba(0,0,0,0.2) ), url(/assets/bg.png);
+}
+
+/* .button */
+
+.api_menu_button {
+	color: black;
+	background: transparent;
+	white-space: normal;
+	height: auto;
+}
+
+.api_menu_button:hover {
+	background: rgba(0,0,0,0.2);
+}
+
+.api_menu_button.active,
+.api_menu_button.active:hover {
+	color: black;
+	background: rgba(0,0,0,0.2);
+}
+
+/* .thumb */
+
+.widget_thumb {
+	padding-top: 48px;
+	width: 48px;
+	
+	-webkit-border-radius: 8px;
+	   -moz-border-radius: 8px;
+	     -o-border-radius: 8px;
+	        border-radius: 8px;
+}
+
+/* .index */
+
+.api_index {
+  color: black;
+  border-bottom: 1px solid #999999;
+}
+
+.api_index:last-child {
+  border-bottom: 0;
+}
+
+.api_index > li > .menu_button:after {
+	font-size: 0.5em;
+	position: absolute;
+	right: 0.75em;
+	
+	content: '▶';
+}
+
+.api_index > li > .menu_button.active:after {
+	content: '▼';
+}
+
+.api_index > li > .menu_button:last-child:after {
+	content: none;
+}
+
+/* Open and close subnav based on whether its content
+   is active. */
+
+.api_index > li > a ~ .index {
+  display: none;
+}
+
+.api_index > li > a.active ~ .index {
+  display: block;
+}
+
+.subapi_index > li > .menu_button {
+  padding-left: 2.5em;
+}
+
+.app_example {
+	/* An extra 2px to account for border. */
+	width: 402px;
+	height: 600px;
+	border: 1px solid #666666;
+}
+
+.events_dl > dd {
+	margin-bottom: 1.6667em;
+}
+
+.lib_button,
+.lib_button:hover {
+  background-position: 57% -251px;
+  width: 26px;
+  height: 26px;
+  padding-top: 26px;
+  line-height: 26px;
+  color: #474747;
+  text-align: center;
+  background-color: transparent;
+  background-image: url(/assets/buttons_toolbar-fb54a2911dd5dbe3219376a9068a2f88.png);
+  border-radius: 0;
+  border: 1px solid transparent;
+  cursor: auto;
+}
+
+
+
