@@ -115,3 +115,12 @@
 	border-left: 6px solid transparent;
 	border-bottom: 0;
 }
+
+/* .dropdown */
+
+.dropdown {
+	padding-top: 0.4em;
+	padding-bottom: 0.4em;
+	background-color: rgba(20,20,20,0.88);
+	border-radius: 0.4em;
+}
