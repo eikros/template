@@ -31,7 +31,7 @@
                  (node = body, node[0].scrollTop) ||
                  (n = 0));
     
-    obj = {'scrollTop': offset.top - 90};
+    obj = {'scrollTop': offset.top - 48};
     
     if (node) {
       node.animate(obj, 400, 'ease-out');

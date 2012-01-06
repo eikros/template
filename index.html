@@ -46,7 +46,7 @@
 		Template. A class-based UI development framework.
 	</header-->
 	
-	<section class="intro_wrap wrap">		
+	<div class="intro_wrap wrap">		
 		<!--dl>
 			<dt>repository</dt>
 			<dd><a href="http://github.com/webdoc/template">github.com/stephband/template</a></dd>
@@ -69,7 +69,11 @@
 			Inline blocks require spaceless HTML.
 			More on that at <a href="techniques.html#inlineblocks">techniques.html#inlineblocks</a>.
 		</p-->
-	</section>
+		
+		<div class="message">
+			<p>Hello. This documentation is in the process of being written. As such, it's incomplete, and changing.</p>
+		</div>
+	</div>
 	
 	
 	
@@ -78,28 +82,6 @@
 		<div class="example_col col">
 			<a class="wrap">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</a>
 		</div>
-	</section>
-	
-	<section class="api_wrap wrap" id="layer_class">
-		<h3>.layer</h3>
-
-		<p>A layer is an absolutely positioned element that fills its parent's width and height:</p>
-
-		<div class="example_col col" style="height: 8em;">
-		  <div class="layer" style="background-color: grey;"></div>
-		</div
-		
-		><code class="code_col col" data-tip=".layer has no background color by default, so we've added one inline here so we can see it.">&lt;div class="layer" style="background-color: grey;"&gt;&lt;/div&gt;</code>
-			
-		<p>Layers can be used to create screens behind loading icons and popups, and for transparent overlays that capture mouse events. Several of template's plugins rely on them. Click on a line of JavaScript to run it:</p>
-
-		<div class="example_col col" style="height: 8em;" id="layer_example">
-		</div
-		
-		><code class="code_col col"
->jQuery('#layer_example').addLoadingIcon();
-jQuery('#layer_example').removeLoadingIcon();
-jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 	</section>
 	
 	<section class="api_wrap wrap" id="col_class">
@@ -377,6 +359,28 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 &lt;/div&gt;</code>
 	</section>
 	
+	<section class="api_wrap wrap" id="layer_class">
+		<h3>.layer</h3>
+
+		<p>A layer is an absolutely positioned element that fills its parent's width and height:</p>
+
+		<div class="example_col col" style="height: 8em;">
+		  <div class="layer" style="background-color: grey;"></div>
+		</div
+		
+		><code class="code_col col" data-tip=".layer has no background color by default, so we've added one inline here so we can see it.">&lt;div class="layer" style="background-color: grey;"&gt;&lt;/div&gt;</code>
+			
+		<p>Layers can be used to create screens behind loading icons and popups, and for transparent overlays that capture mouse events. Several of template's plugins rely on them. Click on a line of JavaScript to run it:</p>
+
+		<div class="example_col col" style="height: 8em;" id="layer_example">
+		</div
+		
+		><code class="code_col col"
+>jQuery('#layer_example').addLoadingIcon();
+jQuery('#layer_example').removeLoadingIcon();
+jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
+	</section>
+	
 	<section class="api_wrap wrap" id="index_class">
 		<h1>.index</h1>
 		
@@ -433,40 +437,6 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 	</section>
 	
 	
-	<section class="api_wrap wrap" id="tab_class">
-		<h1>.tab</h1>
-		
-		<div class="example_col col">
-			<ul class="tabs_index index">
-				<li><a class="tab_button button" href="#tab1">Tab 1</a></li
-			 ><li><a class="tab_button button" href="#tab2">Tab 2</a></li>
-			</ul>
-			
-			<div class="tab active" id="tab1">
-				<p>Time is an illusion.</p>
-			</div
-			><div class="tab" id="tab2">
-				<p>Lunchtime, doubly so.</p>
-			</div>
-		</div
-		
-		><code class="code_col col"
->&lt;ul class="tabs_index index"&gt;
-&nbsp;&nbsp;&lt;li&gt;&lt;a class="tab_button button" href="#tab1"&gt;Tab 1&lt;/a&gt;&lt;/li
-&nbsp;&nbsp;&gt;&lt;li&gt;&lt;a class="tab_button button" href="#tab2"&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class="tab" id="tab1"&gt;
-&nbsp;&nbsp;&lt;p&gt;Time is an illusion.&lt;/p&gt;
-&lt;/div
-&gt;&lt;div class="tab" id="tab2"&gt;
-&nbsp;&nbsp;&lt;p&gt;Lunchtime, doubly so.&lt;/p&gt;
-&lt;/div&gt;
-		</code>
-	</section>
-	
-	
-	
 	<section class="api_wrap wrap" id="slide_class">
 		<h1>.slide</h1>
 		
@@ -487,7 +457,7 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 			 ><li><a class="slide_button button" href="#slide3">Slide 3</a></li>
 			</ul>
 			
-			<div class="slide" id="slide1">
+			<div class="slide active" id="slide1">
 				<p>One of the major problems encountered in time travel is not that of becoming your own father or mother. There is no problem in becoming your own father or mother that a broad-minded and well-adjusted family can't cope with. There is no problem with changing the course of history—the course of history does not change because it all fits together like a jigsaw. All the important changes have happened before the things they were supposed to change and it all sorts itself out in the end.</p>
 				<p><a href="#next">next</a></p>
 			</div
@@ -524,6 +494,37 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 	</section>
 	
 	
+	<section class="api_wrap wrap" id="tab_class">
+		<h1>.tab</h1>
+		
+		<div class="example_col col">
+			<ul class="tabs_index index">
+				<li><a class="tab_button button" href="#tab1">Tab 1</a></li
+			 ><li><a class="tab_button button" href="#tab2">Tab 2</a></li>
+			</ul>
+			
+			<div class="tab active" id="tab1">
+				<p>Time is an illusion.</p>
+			</div
+			><div class="tab" id="tab2">
+				<p>Lunchtime, doubly so.</p>
+			</div>
+		</div
+		
+		><code class="code_col col"
+>&lt;ul class="tabs_index index"&gt;
+&nbsp;&nbsp;&lt;li&gt;&lt;a class="tab_button button" href="#tab1"&gt;Tab 1&lt;/a&gt;&lt;/li
+&nbsp;&nbsp;&gt;&lt;li&gt;&lt;a class="tab_button button" href="#tab2"&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab" id="tab1"&gt;
+&nbsp;&nbsp;&lt;p&gt;Time is an illusion.&lt;/p&gt;
+&lt;/div
+&gt;&lt;div class="tab" id="tab2"&gt;
+&nbsp;&nbsp;&lt;p&gt;Lunchtime, doubly so.&lt;/p&gt;
+&lt;/div&gt;
+		</code>
+	</section>
 	
 	
 	<section class="api_wrap wrap" id="dropdown_class">
@@ -580,8 +581,8 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 		
 		<ul class="api_index index">
 			<li><a class="api_menu_button menu_button button" href="#wrap_class">.wrap</a></li>
-			<li><a class="api_menu_button menu_button button" href="#layer_class">.layer</a></li>
 			<li><a class="api_menu_button menu_button button" href="#col_class">.col</a></li>
+			<li><a class="api_menu_button menu_button button" href="#layer_class">.layer</a></li>
 			<li><a class="api_menu_button menu_button button" href="#index_class">.index</a></li>
 			<li><a class="api_menu_button menu_button button" href="#button_class">.button</a></li>
 			<li><a class="api_menu_button menu_button button" href="#class_2">.thumb</a></li>
@@ -596,6 +597,8 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 			<li><a class="api_menu_button menu_button button" href="#class_3">.right</a></li>
 		</ul>
 	</nav>
+	
+	<a href="http://github.com/stephband/template"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>	
 	
 	<!--[if IE 6]><script src="iepngfix/iepngfix_tilebg.js"></script><![endif]-->
 	<script src="js/js.extensions.js"></script>

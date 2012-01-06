@@ -3,10 +3,10 @@ body {
   padding-bottom: 3.2em;
   
 	background-color: rgb(250,250,250);
-  background-image: -webkit-linear-gradient(left, rgb(20,20,20) 1px, rgb(91,91,91) 1px);
-  background-image:    -moz-linear-gradient(left, rgb(20,20,20) 1px, rgb(91,91,91) 1px);
-  background-image:      -o-linear-gradient(left, rgb(20,20,20) 1px, rgb(91,91,91) 1px);
-  background-image:         linear-gradient(left, rgb(20,20,20) 1px, rgb(91,91,91) 1px);
+  background-image: -webkit-linear-gradient(left, rgb(20,20,20) 1px, #3a4045 1px);
+  background-image:    -moz-linear-gradient(left, rgb(20,20,20) 1px, #3a4045 1px);
+  background-image:      -o-linear-gradient(left, rgb(20,20,20) 1px, #3a4045 1px);
+  background-image:         linear-gradient(left, rgb(20,20,20) 1px, #3a4045 1px);
 	
 	background-position: 60em 0;
 	background-repeat: no-repeat;
@@ -83,7 +83,21 @@ body > .site_wrap {
 	text-align: right;
 }
 
-
+.message {
+	padding: 0.8em;
+	
+	font-size: 0.9333em;
+	
+	color: #645a40;
+	border: 1px solid #FCEEC1;
+	
+	-webkit-border-radius: 0.4em;
+	   -moz-border-radius: 0.4em;
+	     -o-border-radius: 0.4em;
+	        border-radius: 0.4em;
+	
+	background-color: #FDF5D9;
+}
 
 .api_nav {
   position: fixed;
@@ -96,7 +110,7 @@ body > .site_wrap {
   
   overflow: auto;
   
-  background-color: rgb(200,200,200);
+  background-color: #D8D6D5;
   border-right: 1px solid rgb(20,20,20);
 }
 
@@ -111,15 +125,13 @@ body > .site_wrap {
 .api_wrap > p {
 	width: 42em;
 	margin-left: 2em;
-	/*font-family: Georgia, serif;*/
 }
 
-
+.intro_wrap > .message,
 .intro_wrap p {
-	width: 42em;
+	width: 44em;
 	margin-left: 0;
 }
-
 
 .example_col {
 	width: 42em;

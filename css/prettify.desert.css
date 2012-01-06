@@ -44,16 +44,16 @@ pre code {
 }
 
 pre .nocode { background-color: none; color: #000 }
-code .str { color: #ffa0a0 } /* string  - pink */
-code .kwd { color: #f0e68c; /*font-weight: bold*/ }
+code .str { color: #A6CCF2 } /* string  - pink */
+code .kwd { color: #f0e68c;  /* font-weight: bold*/ }
 code .com { color: #87ceeb } /* comment - skyblue */
 code .typ { color: #98fb98 } /* type    - lightgreen */
 code .lit { color: #cd5c5c } /* literal - darkred */
-code .pun { color: #fff }    /* punctuation */
-code .pln { color: #fff }    /* plaintext */
-code .tag { color: #f0e68c; /*font-weight: bold*/ } /* html/xml tag    - lightyellow */
-code .atn { color: #bdb76b; /*font-weight: bold*/ } /* attribute name  - khaki */
-code .atv { color: #ffa0a0 } /* attribute value - pink */
+code .pun { color: #A6CCF2 }    /* punctuation */
+code .pln { color: #e3e6e8 }    /* plaintext */
+code .tag { color: #ffa449; /*font-weight: bold*/ } /* html/xml tag    - lightyellow */
+code .atn { color: #FFD65C; /*font-weight: bold*/ } /* attribute name  - khaki */
+code .atv { color: #A6CCF2 } /* attribute value - pink */
 code .dec { color: #98fb98 } /* decimal         - lightgreen */
 
 /* Specify class=linenums on a pre to get line numbering */
