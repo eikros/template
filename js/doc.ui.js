@@ -13,6 +13,9 @@
   .delegate('a[href^="#"]', 'click touchstart', function(e) {
     var href, elem, offset, scrollTop, obj;
     
+    // This link has already been handled, I fear.
+    if (e.isDefaultPrevented()) { return; }
+    
     href = jQuery(e.target).attr('href');
     elem = jQuery(href);
     
@@ -40,6 +43,19 @@
   })
   
 	.ready(function() {
+		
+		//jQuery('.display').each(function() {
+		//	var elem = jQuery(this),
+		//	    code = jQuery('<code class="code_col col"></code>');
+		//	
+		//	html = jQuery.trim(elem.html());
+		//	
+		//	console.log(html);
+		//	
+		//	code.text(html);
+		//	
+		//	elem.after(code);
+		//});
 		
 		// Highlight contents of <code> tags 
 		prettyPrint();

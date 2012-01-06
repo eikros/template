@@ -48,11 +48,17 @@
 	     -o-border-radius: 0;
 	        border-radius: 0;
 	
+	background-color: transparent;
 	background-image: none;
 	
 	-webkit-box-shadow: none;
 	   -moz-box-shadow: none;
 	        box-shadow: none;
+}
+
+.menu_button:focus,
+.menu_button:hover {
+	background-color: rgba(80,140,200,0.8);
 }
 
 .tab_button {
@@ -82,7 +88,9 @@
 	        box-shadow: 0 1px 1px rgba(255,255,255,0.3), 0 -1px 1px rgba(0,0,0,0.5);
 }
 
-.tab {
+.tab,
+.slide {
+	padding: 0.8em;
 	background-color: rgb(234,234,234);
 }
 
