@@ -433,7 +433,7 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 		><code class="code_col col">&lt;a class="button" href="#"&gt;Do not press&lt;/a&gt;</code>
 	</section>
 	
-	<section class="api_wrap wrap">
+	<section class="api_wrap wrap" id="thumb_class">
 		<h1>.thumb</h1>
 		
 		<div class="example_col col">
@@ -534,6 +534,37 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 	</section>
 	
 	
+	<section class="api_wrap wrap" id="tip_class">
+		<h1>.tip</h1>
+		
+		<p>Tips can be created using the data-tip attribute:</p>
+		
+		<div class="example_col col">
+			<p data-tip="Ok. You can stop, now.">Hover over me.</p>
+		</div
+		
+		><code class="code_col col"
+>&lt;p data-tip="{{ content }}"&gt;&hellip;&lt;/p&gt;</code>
+
+		<p>Tips can also be referenced by id, allowing you to place entire DOM structures inside them:</p>
+
+		<div class="example_col col">
+			<p><a href="#example_tip">Hover over me</a>.</p>
+			
+			<div class="tip" id="example_tip">
+				<p>Ok, you can stop now.</p>
+			</div>
+		</div
+		
+		><code class="code_col col"
+>&lt;p&gt;&lt;a href="#example_tip"&gt;Hover over me&lt;/a&gt;.&lt;/p&gt;
+			
+			&lt;div class="tip" id="example_tip"&gt;{{ content }}&lt;/div&gt;</code>
+		
+		
+	</section>
+	
+	
 	<section class="api_wrap wrap" id="dropdown_class">
 		<h1>.dropdown</h1>
 		<p>A dropdown is for momentary menus or navigation. Once active, the dropdown deactivates when the user touches outside it, or when they click inside it. Note that buttons pointing to the dropdown are given class active while the dropdown is active.</p>
@@ -592,16 +623,16 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 			<li><a class="api_menu_button menu_button button" href="#layer_class">.layer</a></li>
 			<li><a class="api_menu_button menu_button button" href="#index_class">.index</a></li>
 			<li><a class="api_menu_button menu_button button" href="#button_class">.button</a></li>
-			<li><a class="api_menu_button menu_button button" href="#class_2">.thumb</a></li>
+			<li><a class="api_menu_button menu_button button" href="#thumb_class">.thumb</a></li>
 			<li><a class="api_menu_button menu_button button" href="#slide_class">.slide</a></li>
 			<li><a class="api_menu_button menu_button button" href="#tab_class">.tab</a></li>
-			<li><a class="api_menu_button menu_button button" href="#class_3">.tip</a></li>
+			<li><a class="api_menu_button menu_button button" href="#tip_class">.tip</a></li>
 			<li><a class="api_menu_button menu_button button" href="#dropdown_class">.dropdown</a></li>
-			<li><a class="api_menu_button menu_button button" href="#class_3">.popdown</a></li>
-			<li><a class="api_menu_button menu_button button" href="#class_3">.dialog</a></li>
-			<li><a class="api_menu_button menu_button button" href="#class_3">.clear</a></li>
-			<li><a class="api_menu_button menu_button button" href="#class_3">.left</a></li>
-			<li><a class="api_menu_button menu_button button" href="#class_3">.right</a></li>
+			<li><a class="api_menu_button menu_button button" href="#popdown_class">.popdown</a></li>
+			<li><a class="api_menu_button menu_button button" href="#dialog_class">.dialog</a></li>
+			<li><a class="api_menu_button menu_button button" href="#clear_class">.clear</a></li>
+			<li><a class="api_menu_button menu_button button" href="#left_class">.left</a></li>
+			<li><a class="api_menu_button menu_button button" href="#right_class">.right</a></li>
 		</ul>
 	</nav>
 	
