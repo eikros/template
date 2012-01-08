@@ -613,6 +613,21 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 &lt;/ul&gt;</code>
 	</section>
 	
+
+	<section class="api_wrap wrap" id="tap_event">
+		<h1>tap</h1>
+		
+		<p>A 'tap' event is triggered on touchend. This is often more useful than the simulated click events on touch devices, which wait ~300ms before firing, in case they should be interpreted as double clicks. If a tap event is bound to a node, the device's simulated click event is suppressed.</p>
+		<p>Template's tap event is multitouch-aware, ie. a second touch can generate a tap event even if a first touch is already generating one.</p>
+		
+		<div class="example_col col" id="tap_example">
+		  <p>Tap here</p>
+		</div
+		
+		><code class="code_col col"
+>jQuery('#tap_example').bind('tap', fn);</code>
+	</section>
+	
 	
 	<nav class="api_nav nav" id="api_nav">
 		<h1 class="nav_title">Classes</h1>
@@ -633,6 +648,28 @@ jQuery('&lt;p&gt;Poetry!&lt;/p&gt;').popup();</code>
 			<li><a class="api_menu_button menu_button button" href="#clear_class">.clear</a></li>
 			<li><a class="api_menu_button menu_button button" href="#left_class">.left</a></li>
 			<li><a class="api_menu_button menu_button button" href="#right_class">.right</a></li>
+		</ul>
+		
+		<h1 class="nav_title">Plugins</h1>
+		
+		<ul class="api_index index">
+			<li><a class="api_menu_button menu_button button" href="#dialog_method">.dialog()</a></li>
+			<li><a class="api_menu_button menu_button button" href="#dialog_method">.alertDialog()</a></li>
+			<li><a class="api_menu_button menu_button button" href="#dialog_method">.confirmDialog()</a></li>
+			<li><a class="api_menu_button menu_button button" href="#dialog_method">.addTransitionClass()</a></li>
+			<li><a class="api_menu_button menu_button button" href="#dialog_method">.removeTransitionClass()</a></li>
+			<li><a class="api_menu_button menu_button button" href="#dialog_method">.addLoading()</a></li>
+			<li><a class="api_menu_button menu_button button" href="#dialog_method">.removeLoading()</a></li>
+		</ul>
+		
+		<h1 class="nav_title">Events</h1>
+		
+		<ul class="api_index index">
+			<li><a class="api_menu_button menu_button button" href="#activate_event">activate</a></li>
+			<li><a class="api_menu_button menu_button button" href="#deactivate_event">deactivate</a></li>
+			<li><a class="api_menu_button menu_button button" href="#scrolltop_event">scrolltop</a></li>
+			<li><a class="api_menu_button menu_button button" href="#scrollbottom_event">scrollbottom</a></li>
+			<li><a class="api_menu_button menu_button button" href="#tap_event">tap</a></li>
 		</ul>
 	</nav>
 	
