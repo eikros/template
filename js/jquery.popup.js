@@ -89,21 +89,19 @@
 		flag = false;
 		
 		popup
-		.removeTransitionClass('active', {
-			callback: function(){
-				var scrollLeft = jQuery('html').scrollLeft(),
-				    scrollTop = jQuery('html').scrollTop();
-		    
-				popup.remove();
-				
-				docElem.css({ overflow: '' });
-				
-				// FF fix. Reset the scroll position.
-				if (scrollTop) { docElem.scrollTop(scrollTop); }
-				if (scrollLeft) { docElem.scrollLeft(scrollLeft); }
-				
-				fn && fn.call( context );
-			}
+		.removeTransitionClass('active', function(){
+		  var scrollLeft = jQuery('html').scrollLeft(),
+		      scrollTop = jQuery('html').scrollTop();
+		  
+		  popup.remove();
+		  
+		  docElem.css({ overflow: '' });
+		  
+		  // FF fix. Reset the scroll position.
+		  if (scrollTop) { docElem.scrollTop(scrollTop); }
+		  if (scrollLeft) { docElem.scrollLeft(scrollLeft); }
+		  
+		  fn && fn.call( context );
 		});
 	}
 	
@@ -218,16 +216,18 @@
 		hide( layer, options.hideCallback, options.context );
 		doc.unbind('mousedown', mousedown);
 		e.preventDefault();
-	}).keypress(function(e){
-    if(e.keyCode==27){
-      var layer   = jQuery(".popup_layer.active"),
-				  options = layer.data('popup');
-			
-			if (layer.length !== 0) {
-		    hide( layer, options.hideCallback, options.context );
-		    doc.unbind('mousedown', mousedown);
-		  }
-    }
+	})
+	
+	.bind('keyup', function(e){
+    if((e.keyCode || e.which) !== 27) { return; }
+    
+    var layer   = jQuery(".popup_layer.active"),
+		    options = layer.data('popup');
+		
+		if (layer.length !== 0) {
+		  hide( layer, options.hideCallback, options.context );
+		  doc.unbind('mousedown', mousedown);
+		}
   });
   
 	// Expose

@@ -9,10 +9,30 @@ button {
 
 /* .layer */
 
-.popup_layer {
-  background-image: url('/images/bg/rgba_0_0_0_70.png');
+.popup_layer,
+.loading_layer {
+  background-image: url('../images/bg/rgba_0_0_0_70.png');
   background-repeat: repeat;
 }
+
+.js .dropdown,
+.js .popdown,
+.js .popup_layer,
+.js .loading_layer,
+.js .tip,
+.js .tab {
+  filter: 'alpha(opacity=0)';
+}
+
+.js .dropdown.active,
+.js .popdown.active,
+.js .popup_layer.active,
+.js .loading_layer.active,
+.js .tip.active,
+.js .tab.active {
+  filter: 'alpha(opacity=100)';
+}
+
 
 /* .thumb */
 
@@ -55,12 +75,28 @@ button {
   background-position: 0 0;
 }
 
-/* .index, .column */
+/* .index, .col */
 
 .index > li,
 .column,
 .col,
 .col_wrap {
-    /* Trigger hasLayout */
-    zoom: 1;
+  /* Trigger hasLayout */
+  zoom: 1;
+}
+
+.js .button > select {
+	filter: alpha(opacity=0);
+}
+
+body .notransition {
+	-webkit-transition-duration: 0;
+	   -moz-transition-duration: 0;
+	    -ms-transition-duration: 0;
+	        transition-duration: 0;
+
+	-webkit-transition-delay: 0;
+	   -moz-transition-delay: 0;
+	    -ms-transition-delay: 0;
+	        transition-delay: 0;
 }

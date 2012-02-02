@@ -47,7 +47,7 @@ jQuery.noConflict();
 							// If event is in it or on it, do nothing.
 							if (target === e.target || jQuery.contains(target, e.target)) { return; }
 							
-							jQuery(target).trigger('deactivate');
+							jQuery(target).trigger({type: 'deactivate', relatedTarget: e.target});
 	    			}
 	    			
 	    			function close(e) {
@@ -55,7 +55,7 @@ jQuery.noConflict();
 	    				// been handled, possibly by an inner pane.
 	    				if (e.isDefaultPrevented()) { return; }
 	    				
-	    				elem.trigger('deactivate');
+	    				elem.trigger({type: 'deactivate', relatedTarget: e.target});
 	    			}
 	    			
 	    			function deactivate(e) {
@@ -83,7 +83,7 @@ jQuery.noConflict();
 							// If event is in it or on it, do nothing.
 							if (target === e.target || jQuery.contains(target, e.target)) { return; }
 							
-							jQuery(target).trigger('deactivate');
+							jQuery(target).trigger({type: 'deactivate', relatedTarget: e.target});
 	    			}
 	    			
 	    			function deactivate(e) {
@@ -190,7 +190,13 @@ jQuery.noConflict();
 	  	panes = data.panes;
 	  }
 	  
-	  panes.not(e.target).trigger('deactivate');
+	  // Deactivate the last active pane AFTER this pane has been activated.
+	  // It's important for panes who's style depends on the current active
+	  // pane - such as slides, which have .slide.active ~ .slide {...} rules.
+	  var t = setTimeout(function() {
+	  	t = null;
+	  	panes.not(e.target).trigger('deactivate');
+	  }, 0);
 	  
 	  pane.delegate('a[href="#prev"]', 'click', prev);
 	  pane.delegate('a[href="#next"]', 'click', next);
@@ -202,6 +208,11 @@ jQuery.noConflict();
 		    relatedTarget = jQuery(e.relatedTarget);
 		
 		target.css(relatedTarget.offset());
+		
+		jQuery.event.add(document, 'tap', function tap() {
+			jQuery.event.remove(document, 'tap', tap);
+			target.trigger('deactivate');
+		});
 	}
 	
 	function click(e) {
@@ -230,6 +241,8 @@ jQuery.noConflict();
 	}
 	
 	
+	var loc = window.location.href.replace(/#.*/, '');
+	
 	jQuery(document)
 	
 	// Mousedown on buttons toggle activate on their targets
@@ -246,6 +259,11 @@ jQuery.noConflict();
 		
 		link = jQuery(e.currentTarget);
 		href = link.attr('href');
+		
+		// IE has a habit of reporting the entire URL even when the link
+		// contains just a relative hash ref. Strip the rest of the URL.
+		href = href.replace(loc, '');
+		
 		elem = jQuery(href);
 		
 		if (elem.length === 0) { return; }
@@ -258,7 +276,7 @@ jQuery.noConflict();
 		if (data && data.type) {
 			// Check if this type is in classes - if not, we don't want to
 			// be activating it on mousedown.
-			type = (classes[data.type] && data.type);
+			type = data.type;
 		}
 		else {
 			for (t in classes) {
@@ -278,6 +296,8 @@ jQuery.noConflict();
 		link.unbind('click', preventDefault);
 		link.bind('click', preventDefault);
 		
+		if (!classes[type]) { return; }
+		
 		if ((data && data.state) || (!data && elem.hasClass('active'))) {
 			// Element is already active. Do nothing.
 		}
@@ -291,24 +311,30 @@ jQuery.noConflict();
 	})
 
 	// Mouseover on links toggle activate on their targets
-	.delegate('a[href^="#"], [data-tip]', 'mouseover mouseout', function(e) {
-		var link, href, elem, data, type, t;
+	.delegate('a[href^="#"], [data-tip]', 'mouseover mouseout tap', function(e) {
+		var href, node, elem, data, type, t;
 		
-		link = jQuery(e.currentTarget);
-		href = link.data('tip');
+		href = e.currentTarget.getAttribute('data-tip');
 		
 		if (href) {
 			if (!(/^#/.test(href))) {
-				console.log('This tip does not reference an id. It must be text. Template doesn\'t support this yet. It says:', href);
+				//console.log('This tip does not reference an id. It must be text. Template doesn\'t support this yet. It says:', href);
 			}
 		}
 		else {
-			href = link.attr('href');
+			href = e.currentTarget.getAttribute('href');
+			
+			// IE has a habit of reporting the entire URL even when the link
+			// contains just a relative hash ref. Strip the rest of the URL.
+			href = href.replace(loc, '');
 		}
 		
-		elem = jQuery(href);
+		node = document.getElementById(href.replace(/^#/, ''));
 		
-		if (elem.length === 0) { return; }
+		// If there is no node, there's no need to continue. Thanks.
+		if (!node) { return; }
+		
+		elem = jQuery(node);
 		
 		// Get the active data that may have been created by a previous
 		// activate event.
@@ -324,7 +350,11 @@ jQuery.noConflict();
 		  jQuery.data(elem[0], 'active', { type: type, elem: elem });
 		}
 		
-		elem.trigger(e.type === 'mouseover' ? { type: 'activate', relatedTarget: e.currentTarget } : 'deactivate');
+		if (e.type === 'tap') {
+			elem.css(jQuery.prefix('transition')+'Delay', '0ms');
+		}
+		
+		elem.trigger(e.type === 'mouseout' ? 'deactivate' : { type: 'activate', relatedTarget: e.currentTarget });
 	})
 	.delegate('.tip', 'activate', activateTip)
 	.delegate('.tab', 'activate', classes['.tab'].activate)
@@ -332,301 +362,8 @@ jQuery.noConflict();
 	.delegate('.popup', 'activate', classes['.popup'].activate)
 	.delegate('.popdown', 'activate', classes['.popdown'].activate)
 	.delegate('.dropdown', 'activate', classes['.dropdown'].activate);
-})( jQuery );
-
-
-// Handle form elements
-
-(function(document, undefined){
-	var doc = jQuery(document);
 	
-	function fieldData(target) {
-		var field = jQuery(target),
-		    name = field.attr('name'),
-		    data = field.data('field');
-		
-		if (!data){
-			data = {
-				field: field,
-				fields: jQuery('input[name="'+name+'"]'),
-				label: jQuery('label[for="'+field[0].id+'"]')
-			};
-			
-			field.data('field', data);
-		}
-		
-		return data;
-	}
-	
-	doc
-	
-	// Readonly inputs have their text selected when you click
-	// on them.
-	
-	.delegate('input[readonly]', 'focus click', function(e) {
-		jQuery(e.currentTarget).select();
-	})
-	
-	// Extend the events emitted by input[type='range']
-	// nodes with changestart and changeend events.
-	
-	.delegate('input[type="range"]', 'mousedown touchstart', (function(){
-		var endTypes = {
-			mousedown: 'mouseup',
-			touchstart: 'touchend'
-		};
-		
-		function change(e){
-			jQuery(e.target)
-			.trigger({ type: 'changestart' })
-			.unbind('change', change);
-		}
-		
-		function mouseup(e){
-			jQuery(e.target)
-			.trigger({ type: 'changeend' })
-			.unbind('mouseup', mouseup);
-		}
-		
-		return function(e){
-			jQuery(e.target)
-			.bind('change', change)
-			.bind(endTypes[ e.type ], mouseup);
-		};
-	})())
-	
-	// Global form validation
-	
-	.delegate( 'input, textarea', 'change', function(e) {
-		jQuery(this).validate({
-			fail: function(){ e.preventDefault(); }
-		});
-	})
-	
-	// Active classes for radio input labels
-	
-	.delegate('input[type="radio"]', 'change', function(e){
-		var data = fieldData(e.target);
-		
-		data.fields.trigger('statechange');
-	})
-	
-	.delegate('input[type="radio"]', 'statechange', function(e) {
-		var data = fieldData(e.target);
-		
-		if (data.field.prop('checked')) {
-			data.label.addClass('active');
-		}
-		else {
-			data.label.removeClass('active');
-		}
-	})
-	
-	// Active classes for checkbox input labels
-	
-	.delegate('input[type="checkbox"]', 'change', function(e) {
-		var data = fieldData(e.target);
-		
-		if (data.field.prop('checked')) {
-			data.label.addClass('active');
-		}
-		else {
-			data.label.removeClass('active');
-		}
-	});
-	
-	// Create placeholder labels when browser does not
-	// natively support placeholder attribute.
-	
-	//if ( !jQuery.support.placeholder ) {
-	//	
-	//	doc
-	//	.delegate('textarea[placeholder], input[placeholder]', 'change valuechange', function(){
-	//		var input = jQuery(this),
-	//				value = input.val();
-	//		
-	//		if ( !value || !value.length ) {
-	//			input.addClass('empty');
-	//		}
-	//		else {
-	//			input.removeClass('empty');
-	//		};
-	//	})
-	//	
-	//	// TODO: bind DOMNodeInserted only at the end of the
-	//	// ready function, as we're not actually interested in
-	//	// processing DOM nodes that get inserted before that.
-	//	// Also, find a way of emulating DOMNodeInserted in IE.
-	//	
-	//	.bind('ready DOMNodeInserted', (function(){
-	//		var ignore = false;
-	//		
-	//		function identify(node){
-	//			// Generate an id, apply it to the input node
-	//			// and return it.
-	//			return (node.id = 'input_' + parseInt(Math.random() * 100000000));
-	//		}
-	//		
-	//		return function(e){
-	//			var elem;
-	//			
-	//			//console.log('DOM node inserted', e.target);
-	//			
-	//			if (ignore) { return; }
-	//			
-	//			// Look for nodes with placeholder attributes.
-	//			elem = (
-	//				e.target.getAttribute && e.target.getAttribute('placeholder') ?
-	//					jQuery(e.target) :
-	//				e.target.childNodes.length ?
-	//					jQuery('textarea[placeholder], input[placeholder]', e.target) :
-	//					false
-	//			);
-	//			
-	//			if (!elem || !elem.length) { return; }
-	//			
-	//			console.log('DOM node inserted, needs placeholder', e.target);
-	//			
-	//			elem.each(function(i){
-	//				var input = jQuery(this),
-	//						id, value, height, position, text, placeholder;
-	//				
-	//				// If placeholder already exists, do nothing.
-	//				if (input.data('placeholder')) { return; }
-	//				
-	//				id = this.id || identify(this);
-	//				value = input.val();
-	//				height = input.is('input') ? input.outerHeight() : input.css('lineHeight');
-	//				position = input.position();
-	//				text = input.attr('placeholder');
-	//				placeholder = jQuery('<label/>', {
-	//				  html: text,
-	//				  'for': id, 
-	//				  'class': 'placeholder',
-	//				  
-	//				  // It's not really my style to be setting CSS in
-	//				  // JavaScript, but it seems to make sense here.
-	//				  // Let's see how this plays out.
-	//				  css: {
-	//				  	top: position.top,
-	//				  	left: position.left,
-	//				  	height: height,
-	//				  	lineHeight: height + 'px',
-	//				  	paddingLeft: input.css('paddingLeft'),
-	//				  	paddingRight: input.css('paddingRight')
-	//				  }
-	//				});
-	//				
-	//				// Use ignore to signal that the inserted node is coming
-	//				// from this function!
-	//				ignore = true;
-	//				
-	//				input
-	//				.after(placeholder)
-	//				.data('placeholder', placeholder);
-	//				
-	//				ignore = false;
-	//				
-	//				if (!value || !value.length) {
-	//					input.addClass('empty');
-	//				};
-	//			});
-	//		};
-	//	})());
-	//}
-})(document);
-
-
-// Create placeholder labels when browser does not
-// natively support placeholder attribute.
-
-(function( jQuery, undefined ){
-	var store = {},
-			a = 0;
-	
-	function identify(fly){
-	  // Generate an id, apply it to the input node
-	  // and return it.
-	  var id = 'input_' + a++ ;
-	  
-	  fly.id = id;
-	  return id;
-	}
-	
-	function changeHandler(e) {
-		var input = e.target,
-		  	value = input.value,
-		  	placeholder = store[input.id];
-		
-		if ( !value || !value.length ) {
-		  placeholder.css({ display: 'block' });
-		}
-		else {
-		  placeholder.css({ display: 'none' });
-		};
-	}
-	
-	function focusHandler(e) {
-		var input = e.target,
-		  	placeholder = store[input.id];
-		
-		placeholder.css({ display: 'none' });
-	}
-	
-	// Feature detect placeholder support, and when there is no
-	// support create placeholder labels to simulate placeholder
-	// attributes, and delegate event handlers.
-	
-	if (!jQuery.support.placeholder) {
-		
-		// Delegate events coming from inputs and texareas with placeholders.
-		
-		jQuery(document)
-		.delegate('input[type="search"], input[type="text"]', 'change focusout', changeHandler)
-		.delegate('input[type="search"], input[type="text"]', 'focusin', focusHandler)
-		
-		// Create placeholder labels.
-		
-		.ready(function() {
-			var elem = jQuery('textarea[placeholder], input[placeholder]');
-			
-			// Don't bother going any further if there are no inputs
-			// or textareas to process.
-			
-			if (!elem.length) { return; }
-			
-			elem.each(function(i){
-				var input = this,
-				    elem = jQuery(this),
-				    id = input.id || identify(input),
-				    value = input.value,
-				    height = input.nodeName.toLowerCase() === 'input' ?
-				    	elem.height() : 20,
-				    text = elem.attr('placeholder'),
-				    placeholder = jQuery('<label/>', {
-				    	'for': id,
-				    	'class': 'placeholder',
-				    	text: text,
-				    	css: {
-				    		height: height + 'px',
-				    		lineHeight: height + 'px',
-				    		paddingLeft: elem.css('padding-left'),
-				    		paddingRight: elem.css('padding-right')
-				    	}
-				    });
-				
-				placeholder.insertAfter(elem);
-				
-				// Store the placeholder in a hash table to associate it
-				// with its input.
-				store[id] = placeholder;
-				
-				if (!value || !value.length) {
-					placeholder.css({ display: 'block' });
-				};
-			});
-		});
-	}
+	jQuery.isPrimaryButton = isLeftButton;
 })(jQuery);
 
 
