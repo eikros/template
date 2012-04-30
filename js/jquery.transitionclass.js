@@ -74,12 +74,15 @@
         height: true,
         width: true,
         marginLeft: true,
-        marginRight: true,
-        top: true,
-        bottom: true,
-        left: true,
-        right: true,
-        fontSize: true
+        marginRight: true
+      // I'm commenting these out because they're rarely used, and 'left'
+      // is causing a problem for slide activation. And things are starting
+      // to feel sluggish.
+      //  top: true,
+      //  bottom: true,
+      //  left: true,
+      //  right: true,
+      //  fontSize: true
       },
       
       transProps = {
@@ -94,7 +97,6 @@
         // Hmm. jQuery doesn't seem to like animating these. Investigate.
         borderWidth: true,
         borderBottomWidth: true
-        //opacity: true,
       },
       
       propProps = ('color, fontSize, fontWeight, letterSpacing, lineHeight, textIndent, textShadow, verticalAlign, wordSpacing, backgroundColor, backgroundPosition, backgroundImage, borderColor, borderSpacing, ' +
@@ -308,13 +310,15 @@
       });
     }
 
-//    alert(
-//      getStyle(node, 'transition-property') + ' ' + properties + '\n' +
-//      getStyle(node, 'transition-duration') + ' ' + durations + '\n' +
-//      getStyle(node, 'transition-timing-function') + ' ' + timingFns + '\n' +
-//      getStyle(node, 'transition-delay') + ' ' + delays
-//    );
-
+    if (debug) {
+      console.log(
+        getStyle(node, 'transition-property') + ' ' + properties,
+        getStyle(node, 'transition-duration') + ' ' + durations,
+        getStyle(node, 'transition-timing-function') + ' ' + timingFns,
+        getStyle(node, 'transition-delay') + ' ' + delays
+      );
+    }
+    
     obj = parseTransitionCSS(
       (getStyle(node, 'transition-property') || properties || ''),
       (getStyle(node, 'transition-duration') || durations || ''),
@@ -367,7 +371,10 @@
     
     jQuery.removeData(node, 'transition');
     jQuery.event.remove(node, support.cssTransitionEnd, transitionend);
-    if (debug) { console.log('[transition] Transition ended target:', node.id); }
+    if (debug) { console.log('[transition] Transition ended target:', node.id + '.' + node.className.split(/\s+/).join('.')); }
+    
+    // Call the transition end callback
+    data.fn && data.fn.apply(node);
   }
   
   function transitionend (e) {
@@ -382,9 +389,10 @@
     delete data.properties[e.propertyName];
     data.length--;
     
-    if (!data.length) { removeTransition(node, data); }
-    
-    data.fn && data.fn.apply(node);
+    // When the last property has finished transitioning...
+    if (!data.length) {
+      removeTransition(node, data);
+    }
   }
   
   function mergeData(node, newData, curData) {
@@ -455,7 +463,7 @@
         return this;
       }
       
-      if (debug) { console.log('[transition] Transition start target:', node.id, 'properties:', Object.keys(data.properties).join(' ')); }
+      if (debug) { console.log('[transition] Transition start target:', node.id + '.' + node.className.split(/\s+/).join('.'), 'properties:', Object.keys(data.properties).join(' ')); }
       
       if (currentData) {
         // merge data with currentData
@@ -574,10 +582,7 @@
   };
   
   
-  function makeFallback(add) {
-    var doClass = add ? jQuery.fn.addClass : jQuery.fn.removeClass,
-        undoClass = add ? jQuery.fn.removeClass : jQuery.fn.addClass;
-    
+  function makeFallback(doClass, undoClass) {
     return function(classes, fn) {
       var node = this[0],
           elem = this,
@@ -636,10 +641,10 @@
     };
   }
   
+  var addClass = jQuery.fn._addClass = jQuery.fn.addClass,
+      removeClass = jQuery.fn._removeClass = jQuery.fn.removeClass;
+  
   if (jQuery.support.cssTransitionEnd) {
-    var addClass = jQuery.fn._addClass = jQuery.fn.addClass,
-        removeClass = jQuery.fn._removeClass = jQuery.fn.removeClass;
-    
     // Include propertyName in event properties copied to jQuery
     // event object.
     if (jQuery.event.props.indexOf("propertyName") < 0) {
@@ -650,7 +655,7 @@
     jQuery.fn.removeTransitionClass = makeMethod(removeClass, addClass);
   }
   else {
-    jQuery.fn.addTransitionClass = makeFallback(true);
-    jQuery.fn.removeTransitionClass = makeFallback(false);
+    jQuery.fn.addTransitionClass = makeFallback(addClass, removeClass);
+    jQuery.fn.removeTransitionClass = makeFallback(removeClass, addClass);
   }
 })(jQuery);

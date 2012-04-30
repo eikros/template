@@ -30,12 +30,14 @@ img { -ms-interpolation-mode: bicubic; }
 */
 
 .col,
-.column,
+.thumb,
 .horizontal > li {
   /* Uses a technique for getting inline-block behaviour in IE, explained well here:
      http://blog.mozilla.com/webdev/2009/02/20/cross-browser-inline-block/ */
   
   display: inline;
+  /* These things need hasLayout. */
+  zoom: 1;
 }
 
 .horizontal > .last {
@@ -44,7 +46,6 @@ img { -ms-interpolation-mode: bicubic; }
 
 
 /* IE7-down buttons */
-/* Stephen Band, with thanks to electronlibre.ch */
 /* webdev.stephband.info/buttons */
 
 /* input does not move left with -ve margin */
@@ -55,4 +56,23 @@ img { -ms-interpolation-mode: bicubic; }
 
 .js .tip {
 	background-image: url('../images/bg/rgba_0_0_0_80.png');
+}
+
+.js .button.focus select {
+  /* Stops select width from being 100% of the .button's container. */
+  width: auto;
+}
+
+.thumb {
+  /* Even when overflow is hidden (as it is on .thumb), IE7 includes the hidden, overflowed
+     part in it's background-position calculations. Minimise the size of the overflow. */
+  line-height: 0;
+  font-size: 0;
+}
+
+.tab,
+.slide {
+  display: inline;
+  /* These things need hasLayout. */
+  zoom: 1;
 }

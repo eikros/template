@@ -30,7 +30,7 @@ a                 { text-decoration: none; }
 
 a:link {
   /* j.mp/webkit-tap-highlight-color */
-  -webkit-tap-highlight-color: #FF5E99;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.25);
 }
 
 /* Block elements */
@@ -95,8 +95,6 @@ caption           { background-color: inherit; }
 /* Classes */
 
 .last             { margin-bottom: 0; }
-.left             { float: left; padding: 0 }
-.right            { float: right; padding: 0; }
 .note             { font-style: italic; }
 
 /* Selection */

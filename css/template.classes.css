@@ -11,6 +11,10 @@
 	margin: 0 auto;
 }
 
+.slides_wrap {
+	overflow: hidden;
+}
+
 
 /* .layer */
 
@@ -61,22 +65,20 @@
 	/* Make sure we're using the right box model for this technique */
 	-webkit-box-sizing: content-box;
 	   -moz-box-sizing: content-box;
+	    -ms-box-sizing: content-box;
 	        box-sizing: content-box;
 }
 
-.scroll_layer {
-	/* Force scrollbars. */
-	overflow: scroll;
-}
-
-.popup_layer {
+.popup_layer,
+.dialog_layer {
 	position: fixed;
 	
 	/* Center inline-block contents horizontally */
 	text-align: center;
 }
 
-.popup_layer:after {
+.popup_layer:after,
+.dialog_layer:after {
 	/* Center inline-block contents vertically */
 	display: inline-block;
 	content: '';
@@ -85,11 +87,13 @@
 	vertical-align: middle;
 }
 
-.popup_layer > * {
+.popup_layer > *,
+.dialog_layer > * {
 	text-align: left;
 }
 
-.popup {
+.popup,
+.dialog {
 	/* Use inline-block to make popup collapse
 	   to the width of its contents. */
 	display: inline-block;
@@ -113,7 +117,7 @@
 	background-color: white;
 	
  	-webkit-border-radius: 0.3333em;
-		 -moz-border-radius: 0.3333em;
+	   -moz-border-radius: 0.3333em;
 	        border-radius: 0.3333em;
 	
 	-webkit-box-shadow: 0 2px 24px rgba(0,0,0,0.6);
@@ -124,21 +128,28 @@
 .popup > img,
 .popup > canvas,
 .popup > object,
-.popup > embed {
+.popup > embed,
+.dialog > img,
+.dialog > canvas,
+.dialog > object,
+.dialog > embed {
 	max-width: 100%;
 	width: auto;
 	height: auto;
 	display: block;
 }
 
-.popup > .close_button {
+.popup > .close_button,
+.dialog > .close_button {
 	position: absolute;
-	top: -0.8333em;
-	right: -0.8333em;
+	top: -16px;
+	top: -1rem;
+	right: -16px;
+	right: -1rem;
 	
 	-webkit-box-shadow: 0 0 24px rgba(0,0,0,0.6);
-		 -moz-box-shadow: 0 0 24px rgba(0,0,0,0.6);
-					box-shadow: 0 0 24px rgba(0,0,0,0.6);
+	   -moz-box-shadow: 0 0 24px rgba(0,0,0,0.6);
+	        box-shadow: 0 0 24px rgba(0,0,0,0.6);
 }
 
 
@@ -160,7 +171,8 @@
 
 /* Use a <canvas> as a loading icon */
 .loading_layer,
-.popup_layer {
+.popup_layer,
+.dialog_layer {
 	background-image: none;
 	background-color: rgba(31, 32, 33, 0.746094);
 	z-index: 4;
@@ -217,14 +229,6 @@
 
 .js .hidden {
 	display: none;
-}
-
-.no_transition {
-	-webkit-transition: none !important;
-	   -moz-transition: none !important;
-	    -ms-transition: none !important;
-	     -o-transition: none !important;
-	        transition: none !important;
 }
 
 
@@ -302,6 +306,7 @@
 	content: "▶";
 	font-size: 0.75em;
 	display: inline-block;
+	display: inline !IE7;
 	vertical-align: baseline;
 	width: 2em;
 	text-align: center;
@@ -353,6 +358,7 @@
 .divided_index.thumbs li {
 		height: auto;
 		display: inline-block;
+		display: inline !IE7;
 }
 
 
@@ -377,7 +383,9 @@
 .tabs_index > li,
 .crumbs_index > li,
 .actions_index > li {
+	/* For those pour souls who don't understand inline-block (IE7). */
 	display: inline-block;
+	display: inline !IE7;
 	vertical-align: top;
 }
 
@@ -446,6 +454,7 @@
 .vertical > dt,
 .vertical > dd {
 	display: inline-block;
+	display: inline !IE7;
 	vertical-align: top;
 	margin: 0;
 	padding: 0;
@@ -562,13 +571,16 @@
 	   or even mixed fixed and liquid columns, all with arbitrary content
 	   order. However, it is a little susceptible to rounding errors, and
 	   requires spaceless html. */
+	
+	position: relative;
+	
+	/* For those pour souls who don't understand inline-block (IE7). */
 	display: inline-block;
+	display: inline !IE7;
 	vertical-align: top;
 	
 	/* Stop content pushing column wider than it should be */
 	overflow: visible;
-	
-	position: relative;
 	width: 100%;
 }
 
@@ -596,186 +608,6 @@
 	/* A convenient class for when you want to force following columns to wrap. */
 	margin-right: 100%;
 }
-
-.two_col_wrap > .col	  { width: 50%; }
-.three_col_wrap > .col  { width: 33.3333%; }
-.four_col_wrap > .col	  { width: 25%; }
-.five_col_wrap > .col	  { width: 20%; }
-.six_col_wrap > .col	  { width: 16.6667%; }
-.seven_col_wrap > .col  { width: 14.2857%; }
-.eight_col_wrap > .col  { width: 12.5%; }
-.nine_col_wrap > .col	  { width: 11.1111%; }
-.ten_col_wrap > .col    { width: 10%; }
-.eleven_col_wrap > .col { width: 9.0909%; }
-.twelve_col_wrap > .col { width: 8.3333%; }
-
-.two_col_wrap > .first_col        { left: 0;    margin-right: -50%; }
-.two_col_wrap > .second_col       { left: 100%; margin-right: 0; margin-left: -50%; }
-
-.two_col_wrap > .double_col       { width: 100%; margin-right: -100%; }
-
-.three_col_wrap > .first_col      { left: 0;        margin-right: -33.3333%; }
-.three_col_wrap > .second_col     { left: 33.3333%; margin-right: -33.3333%; }
-.three_col_wrap > .third_col      { left: 100%;     margin-right: 0; margin-left: -33.3333%; }
-
-.three_col_wrap > .double_col     { width: 66.6667%; margin-right: -66.6667%; }
-.three_col_wrap > .triple_col     { width: 100%;     margin-right: -100%; }
-
-.four_col_wrap > .first_col       { left: 0;    margin-right: -25%; }
-.four_col_wrap > .second_col      { left: 25%;  margin-right: -25%; }
-.four_col_wrap > .third_col       { left: 50%;  margin-right: -25%; }
-.four_col_wrap > .fourth_col      { left: 100%; margin-right: 0; margin-left: -25%; }
-
-.four_col_wrap > .double_col      { width: 40%;  margin-right: -40%; }
-.four_col_wrap > .triple_col      { width: 60%;  margin-right: -60%; }
-.four_col_wrap > .quadruple_col   { width: 100%; margin-right: -100%; }
-
-.five_col_wrap > .first_col       { left: 0;    margin-right: -20%; }
-.five_col_wrap > .second_col      { left: 20%;  margin-right: -20%; }
-.five_col_wrap > .third_col       { left: 40%;  margin-right: -20%; }
-.five_col_wrap > .fourth_col      { left: 60%;  margin-right: -20%; }
-.five_col_wrap > .fifth_col       { left: 100%; margin-right: 0; margin-left: -20%; }
-
-.five_col_wrap > .double_col      { width: 40%;  margin-right: -40%; }
-.five_col_wrap > .triple_col      { width: 60%;  margin-right: -60%; }
-.five_col_wrap > .quadruple_col   { width: 80%;  margin-right: -80%; }
-.five_col_wrap > .quintuple_col   { width: 100%; margin-right: -100%; }
-
-.six_col_wrap > .first_col        { left: 0;        margin-right: -16.6667%; }
-.six_col_wrap > .second_col       { left: 16.6667%; margin-right: -16.6667%; }
-.six_col_wrap > .third_col        { left: 33.3333%; margin-right: -16.6667%; }
-.six_col_wrap > .fourth_col       { left: 50%;      margin-right: -16.6667%; }
-.six_col_wrap > .fifth_col        { left: 66.6667%; margin-right: -16.6667%; }
-.six_col_wrap > .sixth_col        { left: 100%;     margin-right: 0; margin-left: -16.6667%; }
-
-.six_col_wrap > .double_col       { width: 28.5714%; margin-right: -28.5714%; }
-.six_col_wrap > .triple_col       { width: 42.8571%; margin-right: -42.8571%; }
-.six_col_wrap > .quadruple_col    { width: 57.1429%; margin-right: -57.1429%; }
-.six_col_wrap > .quintuple_col    { width: 71.4286%; margin-right: -71.4286%; }
-.six_col_wrap > .sextuple_col     { width: 100%;     margin-right: -100%; }
-
-.seven_col_wrap > .first_col      { left: 0;        margin-right: -14.2857%; }
-.seven_col_wrap > .second_col     { left: 14.2857%; margin-right: -14.2857%; }
-.seven_col_wrap > .third_col      { left: 28.5714%; margin-right: -14.2857%; }
-.seven_col_wrap > .fourth_col     { left: 42.8571%; margin-right: -14.2857%; }
-.seven_col_wrap > .fifth_col      { left: 57.1429%; margin-right: -14.2857%; }
-.seven_col_wrap > .sixth_col      { left: 71.4286%; margin-right: -14.2857%; }
-.seven_col_wrap > .seventh_col    { left: 100%;     margin-right: 0; margin-left: -14.2857%; }
-
-.seven_col_wrap > .double_col     { width: 28.5714%; margin-right: -28.5714%; }
-.seven_col_wrap > .triple_col     { width: 42.8571%; margin-right: -42.8571%; }
-.seven_col_wrap > .quadruple_col  { width: 57.1429%; margin-right: -57.1429%; }
-.seven_col_wrap > .quintuple_col  { width: 71.4286%; margin-right: -71.4286%; }
-.seven_col_wrap > .sextuple_col   { width: 85.7143%; margin-right: -85.7143%; }
-.seven_col_wrap > .septuple_col   { width: 100%;     margin-right: -100%; }
-
-.eight_col_wrap > .first_col      { left: 0;     margin-right: -12.5%; }
-.eight_col_wrap > .second_col     { left: 12.5%; margin-right: -12.5%; }
-.eight_col_wrap > .third_col      { left: 25%;   margin-right: -12.5%; }
-.eight_col_wrap > .fourth_col     { left: 37.5%; margin-right: -12.5%; }
-.eight_col_wrap > .fifth_col      { left: 50%;   margin-right: -12.5%; }
-.eight_col_wrap > .sixth_col      { left: 62.5%; margin-right: -12.5%; }
-.eight_col_wrap > .seventh_col    { left: 75%;   margin-right: -12.5%; }
-.eight_col_wrap > .eighth_col     { left: 100%;  margin-right: 0; margin-left: -12.5%; }
-
-.eight_col_wrap > .double_col     { width: 25%;  margin-right: -25%; }
-.eight_col_wrap > .triple_col     { width: 37.5%; margin-right: -37.5%; }
-.eight_col_wrap > .quadruple_col  { width: 50%;  margin-right: -50%; }
-.eight_col_wrap > .quintuple_col  { width: 62.5%; margin-right: -62.5%; }
-.eight_col_wrap > .sextuple_col   { width: 75%;  margin-right: -75%; }
-.eight_col_wrap > .septuple_col   { width: 87.5%; margin-right: -87.5%; }
-.eight_col_wrap > .octuple_col    { width: 100%;  margin-right: -100%; }
-
-.nine_col_wrap > .first_col       { left: 0;        margin-right: -11.1111%; }
-.nine_col_wrap > .second_col      { left: 11.1111%; margin-right: -11.1111%; }
-.nine_col_wrap > .third_col       { left: 22.2222%; margin-right: -11.1111%; }
-.nine_col_wrap > .fourth_col      { left: 33.3333%; margin-right: -11.1111%; }
-.nine_col_wrap > .fifth_col       { left: 44.4444%; margin-right: -11.1111%; }
-.nine_col_wrap > .sixth_col       { left: 55.5556%; margin-right: -11.1111%; }
-.nine_col_wrap > .seventh_col     { left: 66.6667%; margin-right: -11.1111%; }
-.nine_col_wrap > .eighth_col      { left: 77.7778%; margin-right: -11.1111%; }
-.nine_col_wrap > .ninth_col       { left: 100%;     margin-right: 0; margin-left: -11.1111%; }
-
-.nine_col_wrap > .double_col      { width: 22.2222%; margin-right: -22.2222%; }
-.nine_col_wrap > .triple_col      { width: 33.3333%; margin-right: -33.3333%; }
-.nine_col_wrap > .quadruple_col   { width: 44.4444%; margin-right: -44.4444%; }
-.nine_col_wrap > .quintuple_col   { width: 55.5556%; margin-right: -55.5556%; }
-.nine_col_wrap > .sextuple_col    { width: 66.6667%; margin-right: -66.6667%; }
-.nine_col_wrap > .septuple_col    { width: 77.7778%; margin-right: -77.7778%; }
-.nine_col_wrap > .octuple_col     { width: 88.8889%; margin-right: -88.8889%; }
-.nine_col_wrap > .nonuple_col     { width: 100%;     margin-right: -100%; }
-
-.ten_col_wrap > .first_col        { left: 0;    margin-right: -10%; }
-.ten_col_wrap > .second_col       { left: 10%;  margin-right: -10%; }
-.ten_col_wrap > .third_col        { left: 20%;  margin-right: -10%; }
-.ten_col_wrap > .fourth_col       { left: 30%;  margin-right: -10%; }
-.ten_col_wrap > .fifth_col        { left: 40%;  margin-right: -10%; }
-.ten_col_wrap > .sixth_col        { left: 50%;  margin-right: -10%; }
-.ten_col_wrap > .seventh_col      { left: 60%;  margin-right: -10%; }
-.ten_col_wrap > .eighth_col       { left: 70%;  margin-right: -10%; }
-.ten_col_wrap > .ninth_col        { left: 80%;  margin-right: -10%; }
-.ten_col_wrap > .tenth_col        { left: 100%; margin-right: 0; margin-left: -10%; }
-
-.ten_col_wrap > .double_col       { width: 20%;  margin-right: -20%; }
-.ten_col_wrap > .triple_col       { width: 30%;  margin-right: -30%; }
-.ten_col_wrap > .quadruple_col    { width: 40%;  margin-right: -40%; }
-.ten_col_wrap > .quintuple_col    { width: 50%;  margin-right: -50%; }
-.ten_col_wrap > .sextuple_col     { width: 60%;  margin-right: -60%; }
-.ten_col_wrap > .septuple_col     { width: 70%;  margin-right: -70%; }
-.ten_col_wrap > .octuple_col      { width: 80%;  margin-right: -80%; }
-.ten_col_wrap > .nonuple_col      { width: 90%;  margin-right: -90%; }
-.ten_col_wrap > .deca_col         { width: 100%; margin-right: -100%; }
-
-.eleven_col_wrap > .first_col     { left: 0;        margin-right: -9.0909%; }
-.eleven_col_wrap > .second_col    { left: 9.0909%;  margin-right: -9.0909%; }
-.eleven_col_wrap > .third_col     { left: 18.1818%; margin-right: -9.0909%; }
-.eleven_col_wrap > .fourth_col    { left: 27.2727%; margin-right: -9.0909%; }
-.eleven_col_wrap > .fifth_col     { left: 36.3636%; margin-right: -9.0909%; }
-.eleven_col_wrap > .sixth_col     { left: 45.4545%; margin-right: -9.0909%; }
-.eleven_col_wrap > .seventh_col   { left: 54.5454%; margin-right: -9.0909%; }
-.eleven_col_wrap > .eighth_col    { left: 63.6363%; margin-right: -9.0909%; }
-.eleven_col_wrap > .ninth_col     { left: 72.7272%; margin-right: -9.0909%; }
-.eleven_col_wrap > .tenth_col     { left: 81.8181%; margin-right: -9.0909%; }
-.eleven_col_wrap > .eleventh_col  { left: 100%;     margin-right: 0; margin-left: -9.0909%; }
-
-.eleven_col_wrap > .double_col    { width: 18.1818%; margin-right: -18.1818%; }
-.eleven_col_wrap > .triple_col    { width: 27.2727%; margin-right: -27.2727%; }
-.eleven_col_wrap > .quadruple_col { width: 36.3636%; margin-right: -36.3636%; }
-.eleven_col_wrap > .quintuple_col { width: 45.4545%; margin-right: -45.4545%; }
-.eleven_col_wrap > .sextuple_col  { width: 54.5454%; margin-right: -54.5454%; }
-.eleven_col_wrap > .septuple_col  { width: 63.6363%; margin-right: -63.6363%; }
-.eleven_col_wrap > .octuple_col   { width: 72.7272%; margin-right: -72.7272%; }
-.eleven_col_wrap > .nonuple_col   { width: 81.8181%; margin-right: -81.8181%; }
-.eleven_col_wrap > .deca_col      { width: 90.9090%; margin-right: -90.9090%; }
-.eleven_col_wrap > .x11_col       { width: 100%;     margin-right: -9.0909%; }
-
-.twelve_col_wrap > .first_col     { left: 0;        margin-right: -8.3333%; }
-.twelve_col_wrap > .second_col    { left: 8.3333%;  margin-right: -8.3333%; }
-.twelve_col_wrap > .third_col     { left: 16.6667%; margin-right: -8.3333%; }
-.twelve_col_wrap > .fourth_col    { left: 25%;      margin-right: -8.3333%; }
-.twelve_col_wrap > .fifth_col     { left: 33.3333%; margin-right: -8.3333%; }
-.twelve_col_wrap > .sixth_col     { left: 41.6667%; margin-right: -8.3333%; }
-.twelve_col_wrap > .seventh_col   { left: 50%;      margin-right: -8.3333%; }
-.twelve_col_wrap > .eighth_col    { left: 58.3333%; margin-right: -8.3333%; }
-.twelve_col_wrap > .ninth_col     { left: 66.6667%; margin-right: -8.3333%; }
-.twelve_col_wrap > .tenth_col     { left: 75%;      margin-right: -8.3333%; }
-.twelve_col_wrap > .eleventh_col  { left: 83.3333%; margin-right: -8.3333%; }
-.twelve_col_wrap > .twelfth_col   { left: 100%;     margin-right: 0; margin-left: -8.3333%; }
-
-.twelve_col_wrap > .double_col    { width: 16.6667%; margin-right: -16.6667%; }
-.twelve_col_wrap > .triple_col    { width: 25%;      margin-right: -25%; }
-.twelve_col_wrap > .quadruple_col { width: 33.3333%; margin-right: -33.3333%; }
-.twelve_col_wrap > .quintuple_col { width: 41.6667%; margin-right: -41.6667%; }
-.twelve_col_wrap > .sextuple_col  { width: 50%;      margin-right: -50%; }
-.twelve_col_wrap > .septuple_col  { width: 58.3333%; margin-right: -58.3333%; }
-.twelve_col_wrap > .octuple_col   { width: 66.6667%; margin-right: -66.6667%; }
-.twelve_col_wrap > .nonuple_col   { width: 75%;      margin-right: -75%; }
-.twelve_col_wrap > .deca_col      { width: 83.3333%; margin-right: -83.3333%; }
-.twelve_col_wrap > .x11_col       { width: 91.6667%; margin-right: -91.6667%; }
-.twelve_col_wrap > .x12_col       { width: 100%;     margin-right: -8.3333%; }
-
-
-
 
 
 /* We use unicode encodings to allow classes to begin with a number, so for
@@ -1099,12 +931,10 @@
 .\31 2_col_wrap > .span12_col { margin-right: -8.3333%; }
 }
 
+/* .pane */
 
-/* .panel */
-
-.panel {
-	position: absolute;
-	overflow: visible;
+.pane {
+  position: relative;
 }
 
 
@@ -1127,14 +957,11 @@
 	margin-right: -100%;
 }
 
-.tab {
-	display: inline-block;
-}
-
 /* Show/hide transitions. */
 
 .js .tab,
 .js .popup_layer,
+.js .dialog_layer,
 .js .loading_layer,
 .js .tip {
 	visibility: hidden;
@@ -1162,6 +989,7 @@
 
 .js .tab.active,
 .js .popup_layer.active,
+.js .dialog_layer.active,
 .js .loading .loading_layer,
 .js .tip.active {
 	/* The inline-block technique overlays tabs on top of one another
@@ -1193,9 +1021,10 @@
 	left: -100%;
 	
 	/* Slides have no height by default to stop them influencing
-	   scrollbars when they are not the active step. */
+	   scrollbars when they are not active. */
 	height: 0;
 	overflow: hidden;
+	z-index: 1;
 	
 	-webkit-transition-property: left, height;
 	   -moz-transition-property: left, height;
@@ -1208,12 +1037,12 @@
 	    -ms-transition-duration: 333ms;
 	     -o-transition-duration: 333ms;
 	        transition-duration: 333ms;
-
-	-webkit-transition-timing-function: ease-in;
-	   -moz-transition-timing-function: ease-in;
-	    -ms-transition-timing-function: ease-in;
-	     -o-transition-timing-function: ease-in;
-	        transition-timing-function: ease-in;
+	
+	-webkit-transition-timing-function: cubic-bezier(0.1, 0.7, 0.7, 1);
+	   -moz-transition-timing-function: cubic-bezier(0.1, 0.7, 0.7, 1);
+	    -ms-transition-timing-function: cubic-bezier(0.1, 0.7, 0.7, 1);
+	     -o-transition-timing-function: cubic-bezier(0.1, 0.7, 0.7, 1);
+	        transition-timing-function: cubic-bezier(0.1, 0.7, 0.7, 1);
 	
 	/* A nice bit of hardware acceleration may help the transitions. */
 	-webkit-transform: translate3d(0,0,0);
@@ -1224,12 +1053,11 @@
 }
 
 .js .slide.active {
-	/* The .active slide is positioned in the centre. It's important because
-	   this rule has to override the following one - even if an active slide
-	   follows an active slide, it should be put at left: 0; */
-	left: 0 !important;
+	/* The .active slide is positioned in the centre. */
+	left: 0;
 	height: auto;
 	overflow: visible;
+	z-index: 2;
 }
 
 .js .slide.active ~ .slide {
@@ -1238,13 +1066,22 @@
 	left: 100%;
 }
 
+.js .slide.active ~ .slide.active {
+	/* Except, of course, any that are still active. */
+	left: 0;
+}
+
 
 /* .popup, .popdown, .dropdown, .stopdown */
 
 .popdown,
 .dropdown {
 	display: block;
-	overflow: hidden;
+	/* Hiding overflow causes problems in IE7 when the dropdown's container
+	   is narrower than the dropdown's content. I'm not sure we have any real
+	   reason to hide it. Probably if you're animating height to reveal you
+	   want this. */
+	/*overflow: hidden;*/
 	
 	position: absolute;
 	top: 2em;
@@ -1325,13 +1162,24 @@
 }
 
 
-/* Links as buttons, thumbnails,	classes */
+/* button and .button */
+
+button {
+	/* buttons have standard padding that needs to be avoided. */
+	padding-top: 0;
+	padding-bottom: 0;
+	/* And they don't automatically inherit font styles. */
+	font-size: inherit;
+	font-family: inherit;
+}
 
 .button:hover,
 .button:focus {
+	/* If button is link, it may have hover styles. */
 	text-decoration: none;
 }
 
+button,
 .button {
 	display: inline-block;
 	position: relative;
@@ -1340,6 +1188,7 @@
 	
 	width: auto;
 	height: 2em;
+	/* button elements ignore line-height, centering text automaticaly. */
 	line-height: 2em;
 	padding-left: 0.75em;
 	padding-right: 0.75em;
@@ -1355,26 +1204,29 @@
 	border-width: 0;
 
 	-webkit-background-clip: padding-box;
-		 -moz-background-clip: padding-box;
+	   -moz-background-clip: padding-box;
 	    -ms-background-clip: padding-box;
 	     -o-background-clip: padding-box;
 	        background-clip: padding-box;
 
 	-webkit-background-origin: padding-box;
-		 -moz-background-origin: padding;
-		 -moz-background-origin: padding-box;
+	   -moz-background-origin: padding;
+	   -moz-background-origin: padding-box;
 	    -ms-background-origin: padding-box;
 	     -o-background-origin: padding-box;
 	        background-origin: padding-box;
 }
 
+button:hover,
 .button:hover {
 	color: rgb(63,63,63);
 }
 
+button.loading,
+button.disabled,
 .button.loading,
 .button.disabled {
-	opacity: 0.6;
+	opacity: 0.4;
 }
 
 .button input {
@@ -1394,16 +1246,67 @@
 	/* Remove default border and shadow */
 	
 	-webkit-box-shadow: none;
-		 -moz-box-shadow: none;
-					box-shadow: none;
+	   -moz-box-shadow: none;
+	        box-shadow: none;
 	
 	-webkit-border-radius: 0;
-		 -moz-border-radius: 0;
-					border-radius: 0;
+	   -moz-border-radius: 0;
+	        border-radius: 0;
 }
 
 .menu_button {
 	text-align: left;
+}
+
+.close_button {
+	width: 32px;
+	width: 2rem;
+	height: 0;
+	padding-top: 28px;
+	padding-top: 1.75rem;
+
+	color: white;
+	background: #444444;
+	border: 2px solid white;
+
+	-webkit-border-radius: 1rem;
+	   -moz-border-radius: 1rem;
+	        border-radius: 1rem;
+}
+
+.close_button:hover {
+	color: white;
+}
+
+.close_button:after {
+	content: '✖';
+	display: block;
+	position: absolute;
+	font-size: 18px;
+	font-size: 1.125rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 28px;
+	line-height: 1.75rem;
+}
+
+.select_button {
+	padding-right: 2.25em;
+	text-align: left;
+}
+
+.select_button:after {
+  content: '▼';
+  display: block;
+  position: absolute;
+  font-size: inherit;
+  line-height: inherit;
+  top: 0;
+  right: 0.5em;
+  opacity: 0.25;
 }
 
 /* .thumb */
@@ -1651,6 +1554,7 @@
 .v_table tbody,
 .v_table tr {
 	display: inline-block;
+	display: inline !IE7;
 }
 
 .v_table {
@@ -1685,7 +1589,13 @@
 
 /* Utilities */
 
-.notransition {
+.notransition,
+.notransition .slide,
+.notransition .tab,
+.notransition .popdown,
+.notransition .dropdown,
+.notransition .layer,
+.notransition .tip {
 	-webkit-transition-duration: 0 !important;
 	   -moz-transition-duration: 0 !important;
 	    -ms-transition-duration: 0 !important;
@@ -1711,3 +1621,62 @@
 .bl, .br { bottom: 0; }
 .tl, .bl { left: 0; }
 .tr, .br { right: 0; }
+
+.left { float: left; }
+.right { float: right; }
+
+.scroll {
+	overflow: auto;
+	/* Enable momentum scrolling. Unfortunately this is buggy. It doesn't
+	   update the custom scrollbar during the momentum ease-out. Also, some
+	   children get rendered improperly. Don't use. */
+	/*-webkit-overflow-scrolling: touch;*/
+}
+
+.scroll::-webkit-scrollbar {
+	/* Force scrollbars to display in mobile WebKit devices. For a demo
+	   of scrollbar configurations:
+	   http://trac.webkit.org/export/41842/trunk/LayoutTests/scrollbars/overflow-scrollbar-combinations.html
+	*/
+	width: 9px;
+	height: 9px;
+	background-color: transparent;
+	-webkit-border-radius: 12px;
+	        border-radius: 12px;
+}
+
+.scroll::-webkit-scrollbar-thumb:vertical,
+.scroll::-webkit-scrollbar-thumb:horizontal {
+	/* Approximate the style of the iPad's default scrollbars. (Can
+	   probably do better, but this is quick). */
+	background-color: #888888;
+	border: 2px solid white;
+	
+	-webkit-border-radius: 12px;
+	        border-radius: 12px;
+}
+
+.scroll::-webkit-scrollbar-thumb:vertical {
+	min-height: 20px;
+}
+
+.scroll::-webkit-scrollbar-thumb:horizontal {
+	min-width: 20px;
+}
+
+.scroll::-webkit-scrollbar-track-piece:disabled,
+.scroll::-webkit-scrollbar-button:disabled {
+	display: none !important;
+}
+
+.x_scroll {
+	overflow-y: hidden;
+}
+
+.y_scroll {
+	overflow-x: hidden;
+}
+
+.x_scroll.y_scroll {
+	overflow: scroll;
+}
