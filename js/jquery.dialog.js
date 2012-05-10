@@ -34,7 +34,7 @@
 //  Dialog roles can by added to jQuery.fn.dialog.roles.
 
 (function(jQuery, undefined){
-	var debug = (window.console && console.log);
+	var debug = false; //(window.console && console.log);
 	
 	var text = {
 	    	ok: 'Ok',
@@ -50,6 +50,24 @@
 	    		    });
 
 	    		return box.html(elem);
+	    	},
+
+	    	slides: function(elem, options) {
+					var box = jQuery('<div/>', {
+					    	'class': options['class'] || 'slides_dialog dialog',
+					    	'css': options.css
+					    }),
+					
+					    // If we don't create the close button this way - if we write out the html
+					    // and have the browser parse it, IE7 cocks up the href, adding the whole
+					    // path in front of it first. Not what we want.
+					    button = jQuery('<a/>', {
+					    	'class': "close_button button",
+					    	'href': "#close",
+					    	'html': text.close
+					    });
+
+					return box.html(elem).append(button);
 	    	},
 
 	    	lightbox: function(elem, options) {
@@ -97,7 +115,7 @@
 	    		return box.html(elem).append(actions);
 	    	}
 	    };
-	
+
 	function deactivate(e) {
 		if (e.currentTarget !== e.target) { return; }
 
@@ -147,11 +165,13 @@
 		.on('deactivateend.dialog', deactivateend)
 		.data('active', {
 			elem: dialog,
+			dialogLayer: dialog,
+			dialogBox: box,
 			role: role ? (role + '_dialog_layer') : 'dialog_layer'
 		})
-		.trigger('activate');
+		.trigger({ type: 'activate', relatedTarget: options.relatedTarget });
 
-		return this;
+		return dialog;
 	};
 
 	// Expose
