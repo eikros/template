@@ -921,6 +921,7 @@
 .\31 2_col_wrap > .span12_col { margin-right: -8.3333%; }
 }
 
+
 /* .pane */
 
 .pane {
@@ -1401,8 +1402,8 @@ button.disabled,
 }
 
 .fb_thumb { background-position: 0 0; }
-.tw_thumb { background-position: -20px 0; }
-.yt_thumb { background-position: -40px 0; }
+.tw_thumb { background-position: -25px 0; }
+.yt_thumb { background-position: -49px 0; }
 
 /* .card */
 
